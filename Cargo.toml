@@ -36,7 +36,7 @@ half = { version = "=2.7.1", default-features = false, features = ["std"] }
 # libcurl in the process, the HTTPS transport on Linux (ADR-0049): only in somicus-net (deny.toml), against the
 # distribution's libcurl, default features off so no OpenSSL is compiled.
 curl = { version = "0.4.51", default-features = false }
-ed25519-dalek = { version = "2.1.1", features = ["rand_core", "zeroize"] }
+ed25519-dalek = { version = "3.0.0", features = ["rand_core", "zeroize"] }
 block2 = { version = "0.6.2", default-features = false, features = ["std"] }
 objc2 = { version = "0.6.5" }
 # Foundation, for NSURLSession in somicus-net on macOS (ADR-0049); the crate adds its features.
