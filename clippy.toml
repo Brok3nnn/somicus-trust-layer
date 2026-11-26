@@ -1,0 +1,6 @@
+cognitive-complexity-threshold = 15
+too-many-arguments-threshold = 4
+too-many-lines-threshold = 80
+# unwrap and expect are denied outside tests (workspace lints in Cargo.toml).
+allow-expect-in-tests = true
+allow-unwrap-in-tests = true

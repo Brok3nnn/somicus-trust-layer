@@ -1,0 +1,16 @@
+[package]
+name = "somicus-privacy-evals"
+version.workspace = true
+description = "The R-suite: recall, precision and latency of the Somicus Privacy Shield on synthetic screens"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+somicus-ner = { workspace = true }
+somicus-privacy = { workspace = true }
+somicus-uigraph = { workspace = true }

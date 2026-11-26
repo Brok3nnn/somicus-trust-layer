@@ -1,0 +1,19 @@
+[package]
+name = "somicus-telemetry"
+version.workspace = true
+description = "Content-free diagnostics for Somicus: tracing spans and events limited to an allow-list of fields"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[features]
+# `testing::capture`, for the tests of the crates that emit spans. Never enabled outside dev-dependencies.
+testing = []
+
+[dependencies]
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }

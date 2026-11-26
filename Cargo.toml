@@ -1,0 +1,62 @@
+[workspace]
+resolver = "3"
+members = ["crates/*", "evals/privacy"]
+
+[workspace.package]
+version = "1.0.0"
+edition = "2024"
+rust-version = "1.99.1"
+license = "Apache-2.0"
+repository = "https://github.com/Brok3nnn/somicus-trust-layer"
+publish = false
+
+[workspace.lints.rust]
+missing_docs = "deny"
+rust_2018_idioms = { level = "deny", priority = -1 }
+unsafe_op_in_unsafe_fn = "deny"
+
+[workspace.lints.clippy]
+allow_attributes_without_reason = "deny"
+dbg_macro = "deny"
+expect_used = "deny"
+panic = "deny"
+pedantic = { level = "deny", priority = -1 }
+print_stderr = "deny"
+print_stdout = "deny"
+todo = "deny"
+unwrap_used = "deny"
+
+[workspace.dependencies]
+base64 = "0.22.1"
+# The name model (ADR-0042), in somicus-ner only: exact pins, default features off. candle-core 0.10.0 to 0.11.0
+# depend on tokenizers with the Oniguruma C library, so 0.9.2 is the newest candle without native code.
+candle-core = { version = "=0.9.2", default-features = false }
+candle-nn = { version = "=0.9.2", default-features = false }
+half = { version = "=2.7.1", default-features = false, features = ["std"] }
+# libcurl in the process, the HTTPS transport on Linux (ADR-0049): only in somicus-net (deny.toml), against the
+# distribution's libcurl, default features off so no OpenSSL is compiled.
+curl = { version = "0.4.51", default-features = false }
+ed25519-dalek = { version = "2.1.1", features = ["rand_core", "zeroize"] }
+block2 = { version = "0.6.2", default-features = false, features = ["std"] }
+objc2 = { version = "0.6.5" }
+# Foundation, for NSURLSession in somicus-net on macOS (ADR-0049); the crate adds its features.
+objc2-foundation = { version = "0.3.2", default-features = false, features = ["std", "block2"] }
+regex = "1.13.1"
+safetensors = { version = "=0.7.0", default-features = false, features = ["std"] }
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
+sha2 = "0.10.8"
+thiserror = "2.0.21"
+somicus-ner = { path = "crates/somicus-ner", version = "1.0.0" }
+somicus-net = { path = "crates/somicus-net", version = "1.0.0" }
+somicus-policy = { path = "crates/somicus-policy", version = "1.0.0" }
+somicus-privacy = { path = "crates/somicus-privacy", version = "1.0.0" }
+somicus-telemetry = { path = "crates/somicus-telemetry", version = "1.0.0" }
+somicus-uigraph = { path = "crates/somicus-uigraph", version = "1.0.0" }
+tokio = { version = "1.53.3", features = ["rt", "rt-multi-thread", "macros", "io-util", "sync", "time", "net"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", default-features = false, features = ["registry", "std"] }
+windows = { version = "0.62.2", default-features = false }
+twox-hash = { version = "2.1.5", default-features = false, features = ["xxhash3_64", "alloc", "std"] }
+proptest = "1.12.0"
+zeroize = { version = "1.8.1", features = ["derive"] }

@@ -1,0 +1,261 @@
+# R-suite v1: person names on synthetic English screens. Every name is made up for this set.
+# One sample per line: form | the screen text | the parts that must not leave the device, separated by " ; ".
+# A title (Dr., Ms.) is not part of the name and is not labelled; a name inside an e-mail address or a file name is.
+first_last | Assigned to Olivia Bennett | Olivia Bennett
+first_last | Olivia Bennett commented on your post | Olivia Bennett
+first_last | Reply from Marcus Reyes | Marcus Reyes
+first_last | Signed by Hannah Clarke on 3 March | Hannah Clarke
+first_last | Meeting organiser: Daniel Foster | Daniel Foster
+first_last | Approved by Chloe Turner | Chloe Turner
+first_last | Owner: Liam Harper | Liam Harper
+first_last | Last edited by Sophie Walsh 2 minutes ago | Sophie Walsh
+first_last | Nathan Brooks is typing | Nathan Brooks
+first_last | Invite sent to Emily Carter | Emily Carter
+first_last | Ryan Mitchell joined the channel | Ryan Mitchell
+first_last | Message Ava Collins | Ava Collins
+first_last | Call with Ethan Morris at 3 pm | Ethan Morris
+first_last | Ticket raised by Grace Palmer | Grace Palmer
+first_last | Lucas Bell shared a file with you | Lucas Bell
+first_last | Created by Isabella Price | Isabella Price
+first_last | Reviewer: Owen Hughes | Owen Hughes
+first_last | Mentioned by Zoe Fletcher in the Q3 plan | Zoe Fletcher
+first_last | Delivery for Jacob Russell | Jacob Russell
+first_last | Patient: Amelia Ward | Amelia Ward
+first_last | Account holder Harry Simmons | Harry Simmons
+first_last | Lily Spencer accepted the invitation | Lily Spencer
+first_last | Shift swapped with Connor Hayes | Connor Hayes
+first_last | Interview with Megan Lloyd scheduled | Megan Lloyd
+first_last | Sent to Callum Reid and 3 others | Callum Reid
+first_last | Edited by Adam Webb | Adam Webb
+first_last | Out of office: Rachel Dunn | Rachel Dunn
+first_last | Payslip for Samuel Fraser | Samuel Fraser
+first_last | Booked by Ellie Marshall | Ellie Marshall
+first_last | Robert Brown updated the forecast | Robert Brown
+first_last | Customer: Jennifer Lawson | Jennifer Lawson
+first_last | Driver Thomas Avery is 5 minutes away | Thomas Avery
+first_last | Emma Doyle left a review | Emma Doyle
+first_last | Next of kin: Peter Quinn | Peter Quinn
+first_last | Speaker: Natalie Burns | Natalie Burns
+title | Welcome back, Dr. Priya Raman | Priya Raman
+title | Mr. Tom Hale has checked in | Tom Hale
+title | Mrs. Helen Parry requested a refund | Helen Parry
+title | Ms. Grace Okafor signed the agreement | Grace Okafor
+title | Prof. Daniel Kim will chair the session | Daniel Kim
+title | Miss Ruby Allen is next in the queue | Ruby Allen
+title | Dr Sarah Lin, Cardiology | Sarah Lin
+title | Rev. Alan Moss confirmed the booking | Alan Moss
+title | Capt. Jonas Reed boarding at gate 12 | Jonas Reed
+title | Mx. Robin Ellis updated their profile | Robin Ellis
+title | Judge Maria Santos presiding | Maria Santos
+title | Appointment with Dr. Okafor | Okafor
+title | Mr. Hale has paid the invoice | Hale
+title | Ms. Patel is out today | Patel
+title | Professor Ian Wright, Physics | Ian Wright
+title | Nurse Karen Doyle on duty | Karen Doyle
+title | Officer Dana Cruz filed the report | Dana Cruz
+title | Mrs. Linda Shaw, Head of HR | Linda Shaw
+title | Dr. Jane Smith joined the call | Jane Smith
+title | Ms. Patricia Williams approved the claim | Patricia Williams
+initials | J. Smith approved the change | J. Smith
+initials | Assigned to A. K. Patel | A. K. Patel
+initials | R.J. Thompson left a comment | R.J. Thompson
+initials | T. Nguyen is presenting | T. Nguyen
+initials | Signed: M. Okafor | M. Okafor
+initials | From: E. Lindqvist | E. Lindqvist
+initials | Author: D. R. Evans | D. R. Evans
+initials | Notes by K. Osei | K. Osei
+initials | P. Moreau (Finance) | P. Moreau
+initials | Reviewed by S. Ahmed | S. Ahmed
+initials | cc: L. Fischer | L. Fischer
+initials | Approved by H. Clarke | H. Clarke
+initials | Requested by B. Okonkwo | B. Okonkwo
+initials | Owner G. Palmer | G. Palmer
+initials | Draft by C. Turner | C. Turner
+initials | Prepared by N. Brooks | N. Brooks
+initials | O.B. replied in the thread | O.B.
+initials | Checked by JS | JS
+initials | F. Ward, Accounts | F. Ward
+initials | Signed off by W. Grant | W. Grant
+last_first | Bennett, Olivia | Bennett, Olivia
+last_first | Reyes, Marcus (Sales) | Reyes, Marcus
+last_first | Okafor, Grace - Manager | Okafor, Grace
+last_first | Contact: Lindqvist, Erik | Lindqvist, Erik
+last_first | Smith, J. | Smith, J.
+last_first | Clarke, Hannah; Foster, Daniel | Clarke, Hannah ; Foster, Daniel
+last_first | Name: Turner, Chloe | Turner, Chloe
+last_first | Harper, Liam (Contractor) | Harper, Liam
+last_first | Employee: Walsh, Sophie | Walsh, Sophie
+last_first | Brooks, Nathan - Night shift | Brooks, Nathan
+first_only | Hi Olivia, | Olivia
+first_only | Thanks, Marcus! | Marcus
+first_only | Olivia is presenting now | Olivia
+first_only | Ask Priya about the budget | Priya
+first_only | Dear Hannah, | Hannah
+first_only | Best regards, Tom | Tom
+first_only | Chat with Nathan | Nathan
+first_only | Sophie reacted with a thumbs up | Sophie
+first_only | Waiting for Daniel to join | Daniel
+first_only | Happy birthday, Zoe! | Zoe
+first_only | Liam left the meeting | Liam
+first_only | Emily is on holiday until Monday | Emily
+first_only | Good morning, Ryan | Ryan
+first_only | Ava shared 3 photos | Ava
+first_only | Note from Ethan | Ethan
+first_only | Isabella started a poll | Isabella
+first_only | Remind Owen tomorrow | Owen
+first_only | Cheers, Megan | Megan
+first_only | Ping Callum about the deploy | Callum
+first_only | Rachel added you to a group | Rachel
+in_email | olivia.bennett@northwind.example | olivia.bennett
+in_email | From: marcus.reyes@hale-trading.example | marcus.reyes
+in_email | To: priya_raman@acme.example | priya_raman
+in_email | hannah.clarke@mail.example replied | hannah.clarke
+in_email | cc daniel.foster@northwind.example | daniel.foster
+in_email | Invite chloe.turner@acme.example | chloe.turner
+in_email | Sent by lharper@hale-trading.example | lharper
+in_email | sophie.w@northwind.example | sophie.w
+in_email | Reply to nathan.brooks+invoices@acme.example | nathan.brooks
+in_email | grace.okafor@clinic.example | grace.okafor
+in_email | Owner tom.hale@northwind.example | tom.hale
+in_email | jsmith@acme.example | jsmith
+in_email | Forwarded from emily-carter@mail.example | emily-carter
+in_email | ryan.mitchell@acme.example (external) | ryan.mitchell
+in_email | ava.collins@northwind.example is not available | ava.collins
+in_email | Contact: ethan@morris-design.example | ethan@morris-design
+in_email | isabella.price@acme.example | isabella.price
+in_email | owen.hughes@northwind.example | owen.hughes
+in_email | zfletcher@mail.example | zfletcher
+in_email | jacob.russell@hale-trading.example | jacob.russell
+in_file_name | Olivia_Bennett_CV.pdf | Olivia_Bennett
+in_file_name | contract-marcus-reyes-2026.docx | marcus-reyes
+in_file_name | Scan - Priya Raman.png | Priya Raman
+in_file_name | HannahClarke_Passport.jpg | HannahClarke
+in_file_name | invoice_for_daniel_foster.xlsx | daniel_foster
+in_file_name | Photo of Grace Okafor.heic | Grace Okafor
+in_file_name | ReyesM_timesheet.csv | ReyesM
+in_file_name | Recording - Nathan Brooks.m4a | Nathan Brooks
+in_file_name | olivia bennett offer letter.pdf | olivia bennett
+in_file_name | 2026-03 Payslip Liam Harper.pdf | Liam Harper
+in_file_name | Chloe Turner - references.docx | Chloe Turner
+in_file_name | sophie_walsh_signed.pdf | sophie_walsh
+in_file_name | TomHale-expenses-Q2.xlsx | TomHale
+in_file_name | interview notes (Emily Carter).txt | Emily Carter
+in_file_name | Ryan.Mitchell.Resume.pdf | Ryan.Mitchell
+in_file_name | ava-collins-headshot.jpg | ava-collins
+in_file_name | Ethan Morris contract v2 FINAL.docx | Ethan Morris
+in_file_name | grace_palmer_medical_form.pdf | grace_palmer
+in_file_name | Lucas Bell 1-1 notes.md | Lucas Bell
+in_file_name | Isabella-Price-ID-scan.png | Isabella-Price
+non_english | Nguyen Thi Lan updated the roster | Nguyen Thi Lan
+non_english | Ravi Shankar Iyer approved the request | Ravi Shankar Iyer
+non_english | Zhang Wei commented on the draft | Zhang Wei
+non_english | Oluwaseun Adeyemi joined the team | Oluwaseun Adeyemi
+non_english | Aleksandra Kowalczyk shared a file | Aleksandra Kowalczyk
+non_english | Assigned to José María Fernández | José María Fernández
+non_english | Björn Lindqvist is out of office | Björn Lindqvist
+non_english | Message from Siobhán O'Connor | Siobhán O'Connor
+non_english | Mohammed Al-Rashid accepted | Mohammed Al-Rashid
+non_english | Kenji Watanabe will review it | Kenji Watanabe
+non_english | Fatima Zahra Benali signed in | Fatima Zahra Benali
+non_english | Dmitri Volkov is typing | Dmitri Volkov
+non_english | Agnieszka Nowak left a comment | Agnieszka Nowak
+non_english | Thandiwe Mokoena created a task | Thandiwe Mokoena
+non_english | Call Saoirse Byrne back | Saoirse Byrne
+non_english | Juan Pablo Ortega paid the invoice | Juan Pablo Ortega
+non_english | Mei Ling Chua booked a room | Mei Ling Chua
+non_english | Haruto Sato is presenting | Haruto Sato
+non_english | Ingrid Haugen updated the budget | Ingrid Haugen
+non_english | Kwame Mensah sent a message | Kwame Mensah
+non_english | Anh Tran reacted to your message | Anh Tran
+non_english | Yusuf Demir is the new owner | Yusuf Demir
+non_english | Leilani Kahale added a note | Leilani Kahale
+non_english | Ngozi Eze approved the leave | Ngozi Eze
+non_english | Arjun Mehta joined from mobile | Arjun Mehta
+non_english | Søren Kjeldsen shared a link | Søren Kjeldsen
+non_english | Łukasz Wiśniewski commented | Łukasz Wiśniewski
+non_english | Nagy Zoltán approved the order | Nagy Zoltán
+also_a_word | Mark Stone replied to the thread | Mark Stone
+also_a_word | Grace Hill is on leave | Grace Hill
+also_a_word | Will Baker updated the sheet | Will Baker
+also_a_word | Rose Price is the account manager | Rose Price
+also_a_word | April Fields shared a link | April Fields
+also_a_word | Hope Rivers joined the call | Hope Rivers
+also_a_word | Bill Carter approved the expense | Bill Carter
+also_a_word | Faith Young started a thread | Faith Young
+also_a_word | Joy Parker sent you a file | Joy Parker
+also_a_word | Rich Taylor is the reviewer | Rich Taylor
+also_a_word | Sky Morgan liked your post | Sky Morgan
+also_a_word | Grant Fisher booked the room | Grant Fisher
+also_a_word | Dawn Archer created the invoice | Dawn Archer
+also_a_word | Robin Swift is presenting | Robin Swift
+also_a_word | Summer Hale left the group | Summer Hale
+also_a_word | Amber Stone updated the status | Amber Stone
+also_a_word | Frank Ellis signed the form | Frank Ellis
+also_a_word | Hunter Lowe is typing | Hunter Lowe
+also_a_word | Pearl Gardner is the owner | Pearl Gardner
+also_a_word | Iris Bloom commented | Iris Bloom
+also_a_word | Victor Price paid the deposit | Victor Price
+also_a_word | Reed Cooper requested access | Reed Cooper
+also_a_word | Chase Banks accepted the offer | Chase Banks
+also_a_word | Ivy Long is on call tonight | Ivy Long
+also_a_word | Miles Young is the driver | Miles Young
+letter_case | OLIVIA BENNETT | OLIVIA BENNETT
+letter_case | olivia bennett | olivia bennett
+letter_case | MARCUS REYES - SALES | MARCUS REYES
+letter_case | To: PRIYA RAMAN | PRIYA RAMAN
+letter_case | hannah clarke (you) | hannah clarke
+letter_case | APPROVED BY DANIEL FOSTER | DANIEL FOSTER
+letter_case | signed by chloe turner | chloe turner
+letter_case | Owner: LIAM HARPER | LIAM HARPER
+letter_case | sophie walsh is typing | sophie walsh
+letter_case | CUSTOMER: JOHN JOHNSON | JOHN JOHNSON
+ui_chrome | Inbox - Olivia Bennett | Olivia Bennett
+ui_chrome | Chat with Marcus Reyes | Marcus Reyes
+ui_chrome | Olivia Bennett's Calendar | Olivia Bennett
+ui_chrome | Priya's notes | Priya
+ui_chrome | Shared with Daniel | Daniel
+ui_chrome | Profile: Grace Okafor | Grace Okafor
+ui_chrome | Meeting notes - Hannah Clarke 1:1 | Hannah Clarke
+ui_chrome | Nathan Brooks (Guest) | Nathan Brooks
+ui_chrome | @marcus.reyes | marcus.reyes
+ui_chrome | @olivia | olivia
+ui_chrome | Hannah C. | Hannah C.
+ui_chrome | Signed in as Tom Hale | Tom Hale
+ui_chrome | Sophie Walsh - Direct message | Sophie Walsh
+ui_chrome | Liam Harper's workspace | Liam Harper
+ui_chrome | Photos of Emily | Emily
+ui_chrome | Files shared by Ryan Mitchell | Ryan Mitchell
+ui_chrome | Ava Collins (Owner) | Ava Collins
+ui_chrome | Viewing as Ethan Morris | Ethan Morris
+ui_chrome | Isabella Price - Away | Isabella Price
+ui_chrome | Switch to Owen Hughes | Owen Hughes
+hyphen_apostrophe | Mary-Jane O'Neill accepted | Mary-Jane O'Neill
+hyphen_apostrophe | Jean-Luc Moreau is presenting | Jean-Luc Moreau
+hyphen_apostrophe | D'Angelo Price sent a file | D'Angelo Price
+hyphen_apostrophe | Anne-Marie Dubois left a note | Anne-Marie Dubois
+hyphen_apostrophe | Liam O'Brien booked the van | Liam O'Brien
+hyphen_apostrophe | Sarah-Louise Kent approved | Sarah-Louise Kent
+hyphen_apostrophe | Kai-Lin Wu commented | Kai-Lin Wu
+hyphen_apostrophe | Zoe McAllister joined | Zoe McAllister
+hyphen_apostrophe | Ian MacLeod is typing | Ian MacLeod
+hyphen_apostrophe | Rory DeWitt left the channel | Rory DeWitt
+several | From Olivia Bennett to Marcus Reyes | Olivia Bennett ; Marcus Reyes
+several | Priya Raman, Tom Hale and Grace Okafor are attending | Priya Raman ; Tom Hale ; Grace Okafor
+several | cc: Hannah Clarke; Daniel Foster | Hannah Clarke ; Daniel Foster
+several | Chloe Turner and Liam Harper edited this | Chloe Turner ; Liam Harper
+several | Sophie, Nathan and Emily reacted | Sophie ; Nathan ; Emily
+several | Swap Ryan Mitchell with Ava Collins | Ryan Mitchell ; Ava Collins
+several | Ethan Morris mentioned Grace Palmer | Ethan Morris ; Grace Palmer
+several | Lucas Bell, Isabella Price | Lucas Bell ; Isabella Price
+several | Owen Hughes replied to Zoe Fletcher | Owen Hughes ; Zoe Fletcher
+several | Attendees: Jacob Russell, Amelia Ward, Harry Simmons | Jacob Russell ; Amelia Ward ; Harry Simmons
+middle_name | Ethan J. Walker approved | Ethan J. Walker
+middle_name | Mary Ellen Carter signed | Mary Ellen Carter
+middle_name | John Paul Rivera is typing | John Paul Rivera
+middle_name | Anna K. Lindgren commented | Anna K. Lindgren
+middle_name | Sarah Jane Parker joined | Sarah Jane Parker
+middle_name | Robert T. Hughes, Director | Robert T. Hughes
+middle_name | Owner: Claire M. Douglas | Claire M. Douglas
+middle_name | Lucy Anne Foster replied | Lucy Anne Foster
+middle_name | David A. Kim accepted | David A. Kim
+middle_name | Emma Louise Grant shared a file | Emma Louise Grant

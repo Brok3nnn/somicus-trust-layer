@@ -1,0 +1,27 @@
+[package]
+name = "somicus-policy"
+version.workspace = true
+description = "Policy Guard, risk classification, and trusted user intent verification for Somicus"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+base64 = { workspace = true }
+ed25519-dalek = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+somicus-telemetry = { workspace = true }
+somicus-uigraph = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true, features = ["sync", "time"] }
+
+[dev-dependencies]
+proptest = { workspace = true }
+somicus-telemetry = { workspace = true, features = ["testing"] }
+tokio = { workspace = true, features = ["macros", "rt"] }

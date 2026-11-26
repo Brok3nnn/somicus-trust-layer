@@ -1,0 +1,80 @@
+# cargo-deny: `cargo deny check` (advisories, licences, bans, sources).
+
+[graph]
+targets = [
+  "aarch64-apple-darwin",
+  "aarch64-pc-windows-msvc",
+  "aarch64-unknown-linux-gnu",
+  "x86_64-apple-darwin",
+  "x86_64-pc-windows-msvc",
+  "x86_64-unknown-linux-gnu",
+]
+all-features = true
+
+[advisories]
+unmaintained = "all"
+unsound = "all"
+ignore = [
+  # paste is unmaintained (no known vulnerability); a build-time macro of gemm, through candle-core.
+  "RUSTSEC-2024-0436",
+  # zip 7 extraction flaws; candle-core 0.9.2 (the name model's runtime) never extracts archives and compiles neither
+  # the AES nor the legacy features.
+  "RUSTSEC-2026-0367",
+  "RUSTSEC-2026-0368",
+  "RUSTSEC-2026-0369",
+  "RUSTSEC-2026-0429",
+  "RUSTSEC-2026-0545",
+  "RUSTSEC-2026-0546",
+  "RUSTSEC-2026-0547",
+  "RUSTSEC-2026-0548",
+]
+
+[licenses]
+unused-allowed-license = "allow"
+confidence-threshold = 0.93
+allow = [
+  "Apache-2.0",
+  "Apache-2.0 WITH LLVM-exception",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "ISC",
+  "MIT",
+  "MPL-2.0",
+  "Unicode-3.0",
+  "Zlib",
+]
+
+[licenses.private]
+ignore = true
+
+[bans]
+multiple-versions = "warn"
+wildcards = "deny"
+highlight = "all"
+# Egress only through somicus-net, which uses the system's own HTTPS stack (ADR-0049): WinHTTP and NSURLSession are OS
+# APIs, not crates, and on Linux the `curl` crate binds the distribution's libcurl, allowed for somicus-net alone. No
+# crate may pull in an HTTP or WebSocket client.
+deny = [
+  { name = "curl", wrappers = ["somicus-net"] },
+  { name = "hyper", wrappers = [] },
+  { name = "reqwest", wrappers = [] },
+  { name = "ureq", wrappers = [] },
+  { name = "tokio-tungstenite", wrappers = [] },
+]
+
+# The distribution's libcurl, never a copy built from source: its TLS library, roots and proxy settings are the
+# system's (ADR-0049).
+[[bans.features]]
+crate = "curl-sys"
+deny = ["static-curl", "static-ssl", "rustls", "ssl", "zlib-ng-compat"]
+
+[bans.workspace-dependencies]
+duplicates = "deny"
+include-path-dependencies = true
+unused = "deny"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []

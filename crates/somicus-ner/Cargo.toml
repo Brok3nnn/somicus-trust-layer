@@ -1,0 +1,37 @@
+[package]
+name = "somicus-ner"
+version.workspace = true
+description = "On-device person-name recognition for the Privacy Shield: a hash-pinned DistilBERT model run by candle (ADR-0042)"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[lib]
+name = "somicus_ner"
+path = "src/lib.rs"
+
+[dependencies]
+candle-core = { workspace = true }
+candle-nn = { workspace = true }
+half = { workspace = true }
+regex = { workspace = true }
+safetensors = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+somicus-privacy = { workspace = true }
+somicus-telemetry = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+somicus-telemetry = { workspace = true, features = ["testing"] }
+
+# Apple's Accelerate framework (a system library) for the matrix products on macOS: about eight times the speed of the
+# pure-Rust kernels (ADR-0042). Other systems use the pure-Rust kernels.
+[target.'cfg(target_os = "macos")'.dependencies]
+candle-core = { workspace = true, features = ["accelerate"] }
+candle-nn = { workspace = true, features = ["accelerate"] }

@@ -1,0 +1,56 @@
+# R-suite v1: identifiers and contact details on synthetic English screens. Card numbers are the networks' published
+# test numbers and IBANs are the standard's documentation examples or made up with a valid check; none is real.
+# One sample per line: form | the screen text | the parts that must not leave the device, separated by " ; ".
+card | Card ending 4111 1111 1111 1111 | 4111 1111 1111 1111
+card | Pay with 4012 8888 8888 1881 | 4012 8888 8888 1881
+card | Mastercard 5555 5555 5555 4444 expires 09/29 | 5555 5555 5555 4444
+card | Card number: 5105-1051-0510-5100 | 5105-1051-0510-5100
+card | Charge 3782 822463 10005 for the deposit | 3782 822463 10005
+card | Saved card 371449635398431 | 371449635398431
+card | Refund to 6011 1111 1111 1117 | 6011 1111 1111 1117
+card | 6011000990139424 was declined | 6011000990139424
+card | Corporate card 3530 1113 3330 0000 | 3530 1113 3330 0000
+card | Billing card: 4000056655665556 | 4000056655665556
+card | Card 3056 9309 0259 04 on file | 3056 9309 0259 04
+card | New card 2223 0031 2200 3222 added | 2223 0031 2200 3222
+card | Virtual card 4242 4242 4242 4242 | 4242 4242 4242 4242
+card | Card no. 4532-0150-1234-5671 | 4532-0150-1234-5671
+iban | Pay to GB82WEST12345698765432 | GB82WEST12345698765432
+iban | Account GB33BUKB20201555555555 | GB33BUKB20201555555555
+iban | IBAN: DE89370400440532013000 | DE89370400440532013000
+iban | Beneficiary IBAN FR1420041010050500013M02606 | FR1420041010050500013M02606
+iban | Transfer to NL91ABNA0417164300 confirmed | NL91ABNA0417164300
+iban | Refund account IE29AIBK93115212345678 | IE29AIBK93115212345678
+iban | IBAN ES9121000418450200051332 | ES9121000418450200051332
+iban | Supplier IBAN GB82 WEST 1234 5698 7654 32 | GB82 WEST 1234 5698 7654 32
+iban | IBAN: DE89 3704 0044 0532 0130 00 | DE89 3704 0044 0532 0130 00
+iban | Swiss account CH9300762011623852957 | CH9300762011623852957
+iban | Payee BE68539007547034 | BE68539007547034
+iban | Payroll IBAN IT60X0542811101000000123456 | IT60X0542811101000000123456
+national_id | SSN 123-45-6789 | 123-45-6789
+national_id | Social Security No. 219-09-9999 | 219-09-9999
+national_id | SSN: 457-55-5462 on the W-2 | 457-55-5462
+national_id | Employee SSN 078 05 1120 | 078 05 1120
+national_id | Taxpayer ID 912-34-5678 | 912-34-5678
+national_id | National Insurance number QQ 12 34 56 C | QQ 12 34 56 C
+national_id | NI number: AB123456C | AB123456C
+email | billing@northwind.example | billing@northwind.example
+email | Send the form to hr-team@acme.example | hr-team@acme.example
+email | Reply-to: no-reply@mail.example | no-reply@mail.example
+email | Support: help@hale-trading.example | help@hale-trading.example
+email | invoices@northwind.example (shared) | invoices@northwind.example
+email | Contact us at Sales@Acme.Example | Sales@Acme.Example
+phone | Call +44 20 7946 0958 | +44 20 7946 0958
+phone | Phone: (312) 555-0147 | (312) 555-0147
+phone | Mobile +1 415 555 0132 | +1 415 555 0132
+phone | Office 020 7946 0018 | 020 7946 0018
+phone | Text 07700 900123 when you arrive | 07700 900123
+phone | Reception +61 2 9374 4000 | +61 2 9374 4000
+phone | Tel. 0161 496 0000 | 0161 496 0000
+phone | Dublin office +353 1 555 0101 | +353 1 555 0101
+phone | Toll free 1-800-555-0199 | 1-800-555-0199
+phone | Call me on 555-0172 | 555-0172
+phone | WhatsApp: +49 151 23456789 | +49 151 23456789
+phone | Fax 0044 20 7946 0999 | 0044 20 7946 0999
+phone | Phone (415) 555-0101 ext. 22 | (415) 555-0101
+phone | +1.312.555.0188 | +1.312.555.0188

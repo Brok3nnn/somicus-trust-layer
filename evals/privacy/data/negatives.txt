@@ -1,0 +1,109 @@
+# R-suite v1: synthetic English screen texts that hold no personal data and must leave the device unchanged. Many
+# hold a word that is also a first name or surname, or a number shaped like an identifier.
+# One sample per line: form | the screen text (nothing is labelled).
+ui_label | Mark as Read
+ui_label | Mark All as Unread
+ui_label | Bill Payment
+ui_label | Pay Bill
+ui_label | Grant Access
+ui_label | Will Not Attend
+ui_label | Rose Gold
+ui_label | April 2026 Report
+ui_label | Summer Sale
+ui_label | Save As
+ui_label | Page Setup
+ui_label | Account Settings
+ui_label | New Message
+ui_label | Reply All
+ui_label | Sales Invoices
+ui_label | Project Phoenix Roadmap
+ui_label | Quarterly Review
+ui_label | Print Preview
+ui_label | Track Changes
+ui_label | Insert Table
+ui_label | Merge Cells
+ui_label | Sort Ascending
+ui_label | Conditional Formatting
+ui_label | Pivot Table
+ui_label | Slide Master
+ui_label | Speaker Notes
+ui_label | Start Slideshow
+ui_label | Junk Email
+ui_label | Sent Items
+ui_label | Focused Inbox
+ui_label | Dawn Patrol Schedule
+ui_label | Hunter Green Theme
+ui_label | Iris Recognition
+ui_label | Max Width
+ui_label | Holly Leaf Template
+ui_label | Ivy League Admissions
+ui_label | Grace Period Settings
+ui_label | Frank Discussion Notes
+ui_label | Victor Mode
+ui_label | Joy Ride Playlist
+ui_label | Robin Round Scheduling
+ui_label | Amber Warning
+ui_label | Sterling Exchange Rate
+ui_label | Chase Mode
+ui_label | Miles Travelled
+ui_label | Long Exposure
+sentence | Hope you are well
+sentence | Faith in the process
+sentence | Grace period ends Friday
+sentence | Will you join the call?
+sentence | Mark the item as done
+sentence | Due in 3 days
+sentence | No items match your search
+sentence | Drag files here to upload
+sentence | Updated 5 minutes ago
+sentence | Taylor series expansion
+sentence | Brown sugar recipe
+sentence | Add to Shopping List
+sentence | Your order has shipped
+sentence | Meeting ends in 10 minutes
+organisation | Hale Trading Ltd
+organisation | Northwind Traders
+organisation | Acme Holdings Group
+organisation | Riverside Dental Clinic
+organisation | Blue Harbour Logistics
+place | London Office
+place | Paris, France
+place | San Francisco Bay Area
+place | Victoria Station
+place | Jackson Heights branch
+place | Wilson Park car park
+place | Lake Geneva
+number | Order 4532 0150 1234 5670
+number | Invoice INV-2026-00042
+number | Version 10.4.2
+number | Total 1,234.56 EUR
+number | Due 2026-11-07
+number | Starts at 14:30
+number | Room 101
+number | ISBN 978-3-16-148410-0
+number | Order #100234567
+number | Reference 12345678901
+number | Extension 4021
+number | ZIP 94107
+number | Build 20261107.3
+number | Part number 400-12-3456
+number | Meeting ID 845 2913 7766
+number | Passcode 123456
+number | Tracking 1Z999AA10123456784
+number | 3 of 12 selected
+number | Battery 87%
+number | Page 14 of 220
+# Added in phase B (2026-11-07) for the name model's second reading, which writes text without capitals in title case,
+# shouted words in title case and separates file names: such text must still leave the device unchanged.
+one_case | drag files here to upload
+one_case | no results found
+one_case | mark all as read
+one_case | will you join the call?
+one_case | NEW MESSAGE
+one_case | SAVE CHANGES
+one_case | ACCOUNT SETTINGS
+file_name | quarterly_report_final.xlsx
+file_name | budget-2026-v2.xlsx
+file_name | IMG_2041.jpg
+file_name | Q3_Sales_Report.pdf
+file_name | meeting-notes-draft.docx

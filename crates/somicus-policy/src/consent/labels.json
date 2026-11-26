@@ -1,0 +1,235 @@
+{
+  "_comment": "Cookie banner labels and how they answer the banner (ADR-0056): read by the device's tests (somicus_policy::consent) and the runtime's (consent.test.ts), so both read every label alike. null: not a banner choice.",
+  "labels": [
+    {
+      "label": "Reject all",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Reject All Cookies ›",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Decline",
+      "choice": "necessary",
+      "bare": true
+    },
+    {
+      "label": "Only necessary cookies",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Use necessary cookies only",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Accept only essential cookies",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Continue without accepting",
+      "choice": "necessary",
+      "bare": true
+    },
+    {
+      "label": "Alle ablehnen",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Nur notwendige Cookies",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Csak az alapvető cookie-k elfogadása",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Csak a szükséges sütik",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Összes elutasítása",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Nem fogadom el",
+      "choice": "necessary",
+      "bare": true
+    },
+    {
+      "label": "Tout refuser",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Continuer sans accepter",
+      "choice": "necessary",
+      "bare": true
+    },
+    {
+      "label": "Rechazar todo",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Rifiuta tutti",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Alles weigeren",
+      "choice": "necessary",
+      "bare": false
+    },
+    {
+      "label": "Accept all",
+      "choice": "all",
+      "bare": false
+    },
+    {
+      "label": "Accept & close",
+      "choice": "all",
+      "bare": true
+    },
+    {
+      "label": "Allow all cookies",
+      "choice": "all",
+      "bare": false
+    },
+    {
+      "label": "Accept cookies",
+      "choice": "all",
+      "bare": false
+    },
+    {
+      "label": "I agree",
+      "choice": "all",
+      "bare": true
+    },
+    {
+      "label": "J’accepte",
+      "choice": "all",
+      "bare": true
+    },
+    {
+      "label": "Alle akzeptieren",
+      "choice": "all",
+      "bare": false
+    },
+    {
+      "label": "Az összes cookie elfogadása",
+      "choice": "all",
+      "bare": false
+    },
+    {
+      "label": "Elfogadom",
+      "choice": "all",
+      "bare": true
+    },
+    {
+      "label": "Tout accepter",
+      "choice": "all",
+      "bare": false
+    },
+    {
+      "label": "Aceptar todas las cookies",
+      "choice": "all",
+      "bare": false
+    },
+    {
+      "label": "Accetta tutti",
+      "choice": "all",
+      "bare": false
+    },
+    {
+      "label": "Alles accepteren",
+      "choice": "all",
+      "bare": false
+    },
+    {
+      "label": "Accept all changes",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "Decline meeting",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "Settings",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "Send",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "Reject and delete",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "OK",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "Agree and join",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "Accept invitation",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "Accept non-essential cookies",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "Save my choices",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "Cookie-k",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "sütiszabályzatunkat ismertető oldalunkra",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "Accept the terms of service",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "Delete all",
+      "choice": null,
+      "bare": false
+    },
+    {
+      "label": "Pay now",
+      "choice": null,
+      "bare": false
+    }
+  ]
+}

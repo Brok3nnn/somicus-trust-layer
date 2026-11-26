@@ -1,0 +1,11 @@
+{
+  "comment": "Test-only fixture (ADR-0052): the key is derived from 32 bytes of 7 and signs nothing real.",
+  "public_key": "6kpsY-KcUgq-9VB7Ey7F-ZVHdq6-vnuSQh7qaRRG0iw",
+  "key_id": "--6IM5l0OosLj9yWskISYhUA3n_3CURQkmrYMSha_ck",
+  "payload": "{\"version\":3,\"tenant_id\":\"0192f5a4-3c1e-7d2a-9b8f-1a2b3c4d5e6f\",\"workspace_type\":\"organization\",\"autonomy_cap\":\"l2\",\"allowed_apps\":null,\"denied_apps\":[\"Example Vault\"],\"created_at_epoch_ms\":1762646400000,\"not_after_epoch_ms\":4102444800000,\"confirmations_required\":true}",
+  "envelope": {
+    "protected": "eyJhbGciOiJFZERTQSIsImtpZCI6Ii0tNklNNWwwT29zTGo5eVdza0lTWWhVQTNuXzNDVVJRa21yWU1TaGFfY2siLCJ0eXAiOiJzb21pY3VzLXBvbGljeS12MStqd3MifQ",
+    "payload": "eyJ2ZXJzaW9uIjozLCJ0ZW5hbnRfaWQiOiIwMTkyZjVhNC0zYzFlLTdkMmEtOWI4Zi0xYTJiM2M0ZDVlNmYiLCJ3b3Jrc3BhY2VfdHlwZSI6Im9yZ2FuaXphdGlvbiIsImF1dG9ub215X2NhcCI6ImwyIiwiYWxsb3dlZF9hcHBzIjpudWxsLCJkZW5pZWRfYXBwcyI6WyJFeGFtcGxlIFZhdWx0Il0sImNyZWF0ZWRfYXRfZXBvY2hfbXMiOjE3NjI2NDY0MDAwMDAsIm5vdF9hZnRlcl9lcG9jaF9tcyI6NDEwMjQ0NDgwMDAwMCwiY29uZmlybWF0aW9uc19yZXF1aXJlZCI6dHJ1ZX0",
+    "signature": "othtMkMbFwLrbMeGy32vVWv-7ZZurtgYiKL9yAtJ6s2DvgwAIwecnBFFZta5aqvGd5l_p_9IQLkcMABcki-NBw"
+  }
+}

@@ -1,0 +1,10 @@
+# cargo-nextest configuration (optional: `cargo test` runs the same tests).
+
+# Report every failing test of a run, not only the first one.
+[profile.default]
+fail-fast = false
+
+# The R-suite v0 latency benchmark gets the machine to itself, so parallel test binaries do not skew its p95.
+[[profile.default.overrides]]
+filter = "package(somicus-privacy-evals) and test(r_suite_v0_meets_its_recall_targets_and_reports_latency)"
+threads-required = "num-cpus"
