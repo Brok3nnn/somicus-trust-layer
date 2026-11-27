@@ -1,11 +1,22 @@
 version: 2
 updates:
+  # One grouped pull request a month, patch releases only. Most crates here are 0.x, where a
+  # minor release may break the API, so minor and major upgrades are done by hand.
   - package-ecosystem: cargo
     directory: /
     schedule:
-      interval: weekly
-    open-pull-requests-limit: 5
+      interval: monthly
+    groups:
+      cargo-patch:
+        update-types: [patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
+    groups:
+      github-actions:
+        patterns: ["*"]
