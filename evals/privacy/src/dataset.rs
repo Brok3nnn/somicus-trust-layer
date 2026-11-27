@@ -21,8 +21,8 @@ pub fn de_samples() -> Vec<LabeledSample> {
     vec![
         // Checksum IDs
         LabeledSample {
-            text: "Kundenkonto Email: m.weber@siemens.de bitte aktualisieren",
-            expected_raw: "m.weber@siemens.de",
+            text: "Kundenkonto Email: m.weber@firma.example bitte aktualisieren",
+            expected_raw: "m.weber@firma.example",
             is_checksum_id: true,
             locale: "DE",
         },
@@ -159,8 +159,8 @@ pub fn hu_samples() -> Vec<LabeledSample> {
     vec![
         // Checksum IDs
         LabeledSample {
-            text: "Kapcsolattartó email: kovacs.bela@ceg.hu rögzítve",
-            expected_raw: "kovacs.bela@ceg.hu",
+            text: "Kapcsolattartó email: kovacs.bela@ceg.example rögzítve",
+            expected_raw: "kovacs.bela@ceg.example",
             is_checksum_id: true,
             locale: "HU",
         },
