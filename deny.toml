@@ -15,18 +15,8 @@ all-features = true
 unmaintained = "all"
 unsound = "all"
 ignore = [
-  # paste is unmaintained (no known vulnerability); a build-time macro of gemm, through candle-core.
+  # paste is unmaintained (no known vulnerability); a build-time macro of gemm and tokenizers, through candle-core.
   "RUSTSEC-2024-0436",
-  # zip 7 extraction flaws; candle-core 0.9.2 (the name model's runtime) never extracts archives and compiles neither
-  # the AES nor the legacy features.
-  "RUSTSEC-2026-0367",
-  "RUSTSEC-2026-0368",
-  "RUSTSEC-2026-0369",
-  "RUSTSEC-2026-0429",
-  "RUSTSEC-2026-0545",
-  "RUSTSEC-2026-0546",
-  "RUSTSEC-2026-0547",
-  "RUSTSEC-2026-0548",
 ]
 
 [licenses]
@@ -52,10 +42,13 @@ multiple-versions = "warn"
 wildcards = "deny"
 highlight = "all"
 # Egress only through somicus-net, which uses the system's own HTTPS stack (ADR-0049): WinHTTP and NSURLSession are OS
-# APIs, not crates, and on Linux the `curl` crate binds the distribution's libcurl, allowed for somicus-net alone. No
-# crate may pull in an HTTP or WebSocket client.
+# APIs, reached through the `windows` and `objc2-foundation` crates, and on Linux the `curl` crate binds the
+# distribution's libcurl; all three are allowed for somicus-net alone. No crate may pull in an HTTP or WebSocket client.
+# Clippy's `disallowed-methods` (clippy.toml) does the same for sockets and processes in the code itself.
 deny = [
   { name = "curl", wrappers = ["somicus-net"] },
+  { name = "objc2-foundation", wrappers = ["somicus-net"] },
+  { name = "windows", wrappers = ["somicus-net"] },
   { name = "hyper", wrappers = [] },
   { name = "reqwest", wrappers = [] },
   { name = "ureq", wrappers = [] },

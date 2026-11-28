@@ -5,7 +5,8 @@
 //! [`Redacted::zip`], `collect`) carry it through serialization. [`Redacted::without_content`] is the only other way
 //! in, for protocol framing, identifiers and credentials that carry no screen or user content; [`Redacted::account_data`]
 //! brands what the person types into Somicus's own sign-in and registration forms for the Somicus identity service
-//! (ADR-0032). Both are explicit, named escape hatches: every call site is an audit point, easy to find with grep. The brand cannot be deserialized from untrusted input, and `Debug` never prints the value.
+//! (ADR-0032). Both are explicit, named escape hatches: every call site is an audit point, easy to find with grep. The
+//! brand cannot be deserialized from untrusted input, and `Debug` never prints the value.
 
 use std::fmt;
 use std::ops::Deref;
@@ -28,15 +29,15 @@ use serde::{Serialize, Serializer};
 ///
 /// Code outside this crate cannot brand a raw value by construction, conversion or deserialization:
 ///
-/// ```compile_fail
+/// ```compile_fail,E0624
 /// let leaked = somicus_privacy::Redacted::new(String::from("jane.doe@example.com"));
 /// ```
 ///
-/// ```compile_fail
+/// ```compile_fail,E0277
 /// let leaked: somicus_privacy::Redacted<String> = String::from("jane.doe@example.com").into();
 /// ```
 ///
-/// ```compile_fail
+/// ```compile_fail,E0277
 /// let leaked: somicus_privacy::Redacted<String> = serde_json::from_str("\"jane.doe@example.com\"").unwrap();
 /// ```
 #[derive(Clone, PartialEq, Eq)]

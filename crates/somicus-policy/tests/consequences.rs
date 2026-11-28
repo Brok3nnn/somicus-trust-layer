@@ -1,4 +1,4 @@
-//! The device's check that the person asked for a step that cannot be taken back (ADR-0040 requirement 7), on the
+//! The device's check that the person asked for a step that cannot be taken back (ADR-0040), on the
 //! cases of the agent runtime's own tests (the runtime is not part of this repository), so the device and the runtime
 //! agree. All words are synthetic.
 
@@ -89,7 +89,7 @@ fn registering_signing_up_or_subscribing_asks_to_send_that_form() {
 
 #[test]
 fn emailing_something_asks_to_send_it_but_writing_an_email_does_not() {
-    // The runtime's own cases (agent-sim `mail-invoice`, 2026-11-10).
+    // The runtime's own cases.
     for words in [
         "rename it, then email it to anna@example.com",
         "email this report to Ben",

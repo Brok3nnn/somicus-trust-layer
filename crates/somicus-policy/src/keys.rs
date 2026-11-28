@@ -1,4 +1,4 @@
-//! The keys Somicus may press by itself in a `press_key` step (ADR-0021 §3).
+//! The keys Somicus may press by itself in a `press_key` step (ADR-0021).
 //!
 //! The list mirrors `ALLOWED_KEYS` in the agent runtime (not part of this repository); a key outside
 //! it is never pressed, whatever the model asks for. It holds navigation keys and a few browser and media shortcuts.
@@ -62,7 +62,7 @@ pub fn key_floor(key: &str, target: &ActionTarget<'_>) -> RiskClass {
     }
     match key {
         "return" if is_search_target(target) => RiskClass::R1,
-        // Saving (cmd+s) persists the document, like the Save button (2026-11-10, agent-sim `excel-grades`).
+        // Saving (cmd+s) persists the document, like the Save button.
         "return" | "cmd+s" => RiskClass::R3,
         "delete" if !is_text_target(target) => RiskClass::R3,
         "delete" | "cmd+a" => RiskClass::R2,

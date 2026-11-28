@@ -30,6 +30,7 @@ cargo test
   with a `// SAFETY:` comment.
 - Changes that widen what can leave the device, what may be logged or what Somicus may do need a threat-model note in
   the pull request and a test that pins the new boundary. A decision that changes an ADR gets a new or amended ADR.
-- No new HTTP or WebSocket client crate: egress goes through `somicus-net` only (`deny.toml` enforces this).
+- No new HTTP or WebSocket client crate, and no socket, DNS or process call outside `somicus-net`: egress goes through
+  `somicus-net` only (`deny.toml` and Clippy's `disallowed-methods` in `clippy.toml` enforce this).
 
 By contributing you agree that your contributions are licensed under the Apache License 2.0.

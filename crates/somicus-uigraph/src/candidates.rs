@@ -1,4 +1,4 @@
-//! Actionable candidate ranking for `decide.target` decision routes (Perception §10).
+//! Actionable candidate ranking for `decide.target` decision routes.
 //!
 //! Emits top-K (default 32, max 64) deterministic candidates plus the mandatory `none_visible` option.
 
@@ -71,7 +71,7 @@ impl Default for CandidateRankingOptions {
     }
 }
 
-/// Ranks and produces the candidate set for `decide.target` (Perception §10).
+/// Ranks and produces the candidate set for `decide.target`.
 #[must_use]
 pub fn extract_candidate_set(graph: &UiGraph, options: &CandidateRankingOptions) -> CandidateSet {
     let limit = options.max_candidates.clamp(1, 64);

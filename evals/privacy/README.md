@@ -31,16 +31,16 @@ the tests print the measured p95.
 
 ## Results
 
-Rules only, as `cargo test` measures them in this repository (debug build, Apple Silicon, 2026-11-26):
+Rules only, as `cargo test` measures them in this repository (debug build, Apple Silicon, 2026-11-28):
 
 | Measure | Rules only |
 |---|---|
 | Person names, recall / precision | 14.0 % (38 of 272) / 88.9 % |
 | Identifiers (cards, IBANs, national IDs), recall | 100.0 % (42 of 42) |
 | Contact details (e-mail, phone), recall | 92.3 % (24 of 26) |
-| Replaced letters that were personal | 80.5 % |
+| Replaced letters that were personal | 80.6 % |
 | Negatives changed | 5 of 104 |
-| Per English screen of 40 texts, p50 / p95 | 0.4 / 1.6 ms |
+| Per English screen of 40 texts, p50 / p95 | 0.5 / 1.7 ms |
 
 With the name model, measured on 2026-11-08 in a release build on an Apple M2 Pro (the files are not in this
 repository, so `cargo test` does not reproduce this column):

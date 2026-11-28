@@ -1,4 +1,4 @@
-//! In-memory, reversible pseudonymization token vault (Privacy Shield §4).
+//! In-memory, reversible pseudonymization token vault (ADR-0014).
 //!
 //! Stores session-consistent bidirectional mappings between raw PII and typed tokens
 //! (`⟦PERSON_1⟧`, `⟦EMAIL_1⟧`, `⟦IBAN_1⟧`). Memory is zeroized on drop.

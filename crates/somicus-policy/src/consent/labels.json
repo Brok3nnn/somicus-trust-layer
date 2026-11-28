@@ -1,5 +1,5 @@
 {
-  "_comment": "Cookie banner labels and how they answer the banner (ADR-0056): read by the device's tests (somicus_policy::consent) and the runtime's (consent.test.ts), so both read every label alike. null: not a banner choice.",
+  "_comment": "Cookie banner labels and how they answer the banner (ADR-0056): read by the device's tests (somicus_policy::consent) and the agent runtime's, so both read every label alike. null: not a banner choice.",
   "labels": [
     {
       "label": "Reject all",

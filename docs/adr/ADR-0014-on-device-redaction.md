@@ -28,6 +28,7 @@ egress log, and a server-side re-scan as defence in depth.
 
 ## Consequences
 
-- (+) Raw personal data does not leave the device by construction; the type system makes the boundary visible.
+- (+) Raw personal data cannot be sent as a request body without a named, greppable escape hatch; the type system
+  makes the boundary visible.
 - (−) On-device CPU and memory cost (budget: 40 ms p95 per screen). Recall is never 100 %, hence the R-suite
   (`evals/privacy`), conservative defaults and defence in depth.

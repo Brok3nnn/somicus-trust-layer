@@ -4,3 +4,18 @@ too-many-lines-threshold = 80
 # unwrap and expect are denied outside tests (workspace lints in Cargo.toml).
 allow-expect-in-tests = true
 allow-unwrap-in-tests = true
+# Egress only through somicus-net (ADR-0049): no other code connects a socket, binds a UDP socket, resolves a host name
+# or starts a process. somicus-net's plain-HTTP path to a loopback address is the one `#[expect]`. The Tokio paths are
+# allowed to be unresolved in crates that do not depend on Tokio.
+disallowed-methods = [
+  { path = "std::net::TcpStream::connect", reason = "egress goes through somicus_net::send (ADR-0049)" },
+  { path = "std::net::TcpStream::connect_timeout", reason = "egress goes through somicus_net::send (ADR-0049)" },
+  { path = "std::net::UdpSocket::bind", reason = "egress goes through somicus_net::send (ADR-0049)" },
+  { path = "std::net::ToSocketAddrs::to_socket_addrs", reason = "a DNS lookup is egress too (ADR-0049)" },
+  { path = "std::process::Command::new", reason = "no request starts a process (ADR-0049)" },
+  { path = "tokio::net::TcpStream::connect", reason = "egress goes through somicus_net::send (ADR-0049)", allow-invalid = true },
+  { path = "tokio::net::TcpSocket::connect", reason = "egress goes through somicus_net::send (ADR-0049)", allow-invalid = true },
+  { path = "tokio::net::UdpSocket::bind", reason = "egress goes through somicus_net::send (ADR-0049)", allow-invalid = true },
+  { path = "tokio::net::lookup_host", reason = "a DNS lookup is egress too (ADR-0049)", allow-invalid = true },
+  { path = "tokio::process::Command::new", reason = "no request starts a process (ADR-0049)", allow-invalid = true },
+]

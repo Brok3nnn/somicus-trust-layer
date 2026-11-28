@@ -2,7 +2,7 @@
 //!
 //! Enforces:
 //! - Hard invariants: R5 always denied; denied apps always blocked; nothing runs at L0 (answer only).
-//! - Autonomy cap enforcement (personal workspace capped at L1).
+//! - The autonomy cap of the active bundle: L1 for the personal default, L3 for [`PolicyBundle::personal_do`].
 //! - Physical confirmation binding for R3 and R4 actions at every level, unless the person switched confirmations off
 //!   and the bundle does not require them (ADR-0040).
 //! - Bundle updates require a valid signature by a pinned key (ADR-0052); a bundle this device accepted before can be
@@ -32,7 +32,7 @@ pub enum PolicyDecision {
     /// Action is permitted to proceed without user confirmation.
     Permit,
     /// Action requires physical user confirmation before execution. The desktop words the sheet from the step and the
-    /// risk class with its own localised templates (interaction model §7); the policy holds no text for people.
+    /// risk class with its own localised templates; the policy holds no text for people.
     RequireConfirmation {
         /// SHA-256 hash of the exact action awaiting physical confirmation.
         action_hash: ActionHash,

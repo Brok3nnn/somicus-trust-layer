@@ -23,5 +23,4 @@ the Privacy Shield (`redact_uigraph`, `redact_digest`, `ClassifiedText`) and sha
 ## Testing
 
 `cargo test -p somicus-uigraph`. The tests cover candidate ranking, coordinates and deltas, the digest budget,
-fingerprint properties, untrusted coordinates and the public crate boundary; the fingerprint and coordinate tests use
-`proptest`.
+fingerprint properties and untrusted coordinates; the fingerprint and coordinate tests use `proptest`.

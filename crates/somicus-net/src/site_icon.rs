@@ -1,9 +1,10 @@
 //! A website's own icon (ADR-0027): `https://<host>/favicon.ico` of the page Somicus works on, so the Dock's activity
 //! card can show the site rather than the browser.
 //!
-//! It is accepted as the one request that leaves the Mac without a [`Redacted`](crate::Redacted) payload:
-//! it carries no body, goes only to the host of the page the person already has open, over HTTPS, without cookies, and
-//! returns at most a small image whose bytes must start like a known image format. Nothing about it is logged.
+//! It is one of the two requests that leave the device without a [`Redacted`](crate::Redacted) body (the other is the
+//! hash-pinned download in [`crate::pinned_file`]): it carries no body, goes only to the host of the page the person
+//! already has open, over HTTPS, without cookies, and returns at most a small image whose bytes must start like a known
+//! image format. Nothing about it is logged.
 
 use crate::error::NetError;
 

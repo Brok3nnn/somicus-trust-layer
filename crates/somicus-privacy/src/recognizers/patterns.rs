@@ -1,6 +1,6 @@
 //! Pattern recognizers and checksum validators for structured identifiers.
 //!
-//! Implements Privacy Shield §4:
+//! The recognizers of ADR-0014:
 //! - Email, phone (DE/EN/HU), IBAN (mod-97), payment cards (Luhn),
 //!   national IDs (US SSN, DE Steuer-ID, HU adóazonosító jel, HU TAJ),
 //!   API secrets and access tokens.

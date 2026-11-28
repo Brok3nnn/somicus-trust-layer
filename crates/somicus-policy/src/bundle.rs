@@ -34,11 +34,11 @@ pub const BUILT_IN_DENIED_APPS: &[&str] = &[
     "secpol",
 ];
 
-/// Workspace type distinction per data model and interaction model.
+/// Whether a workspace is the person's own or an organisation's.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum WorkspaceType {
-    /// Personal workspace (auto-created on signup, capped at L1 in MVP).
+    /// Personal workspace: created at sign-up, with no administrator.
     Personal,
     /// Organization tenant workspace (admin policies, higher autonomy possible).
     Organization,
@@ -76,13 +76,9 @@ pub struct PolicyBundle {
 }
 
 impl PolicyBundle {
-    /// Creates the default signed policy bundle for personal workspaces.
-    ///
-    /// Per Interaction Model §5:
-    /// "Personal workspaces have no admin. They run on the signed default policy bundle...
-    /// all apps enabled except a built-in deny list (password managers, banking/brokerage apps,
-    /// system security settings), maximum autonomy L1 in the MVP." The deny list is [`BUILT_IN_DENIED_APPS`], which
-    /// every bundle applies.
+    /// The built-in default for personal workspaces, which have no administrator: compiled in, never signed (ADR-0052).
+    /// Every app is allowed except [`BUILT_IN_DENIED_APPS`], which every bundle applies, and the autonomy cap is L1;
+    /// [`Self::personal_do`] raises it to L3.
     #[must_use]
     pub fn default_personal() -> Self {
         Self {
@@ -112,7 +108,7 @@ impl PolicyBundle {
 
     /// Checks whether a given application name or identifier is permitted by this policy bundle: not on
     /// [`BUILT_IN_DENIED_APPS`] or the bundle's deny list, and on its allow list when it has one. Entries name apps by
-    /// whole names, never by parts of a name (see [`names_app`]).
+    /// whole names, never by parts of a name (see `names_app`).
     #[must_use]
     pub fn is_app_allowed(&self, app_id: &str) -> bool {
         if BUILT_IN_DENIED_APPS

@@ -10,8 +10,9 @@ are private and not included.
 
 1. **Minimise at the source.** Screen text is classified and pseudonymized on the device; raw personal data never
    needs to leave it. The model sees `⟦PERSON_1⟧`, and the answer is rehydrated locally.
-2. **One egress path, enforced by types.** Only `somicus-net` opens connections, and its request body type is
-   `Redacted<T>`, which only the Privacy Shield (or a named, greppable escape hatch) can produce.
+2. **One egress path, enforced by types and lints.** Only `somicus-net` opens connections (Clippy's
+   `disallowed-methods` and `deny.toml`, both run in CI), and its request body type is `Redacted<T>`, which only the
+   Privacy Shield (or a named, greppable escape hatch) can produce. The URL and the credential headers are not branded.
 3. **Deterministic gating, independent of the model.** Whether a step may run is decided by local Rust rules: risk
    floors a model can only raise, an autonomy cap, an app deny list, value and key rules, and confirmations verified as
    physical input. A compromised server or a manipulated model can propose; it cannot authorise.

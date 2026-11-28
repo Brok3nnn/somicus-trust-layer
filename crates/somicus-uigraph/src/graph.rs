@@ -1,4 +1,4 @@
-//! Top-level UI Graph container and graph algorithms (Perception §2).
+//! Top-level UI Graph container and graph algorithms.
 
 use crate::error::UiGraphError;
 use crate::fingerprint::{FingerprintInput, compute_element_fingerprint};
@@ -74,7 +74,7 @@ pub struct FocusInfo {
     pub window_ref: Option<String>,
 }
 
-/// The normalized, fused UI Graph model of the on-screen state (Perception §2).
+/// The normalized, fused UI Graph model of the on-screen state.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct UiGraph {
     /// Unique snapshot identifier.

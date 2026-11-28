@@ -1,4 +1,4 @@
-//! Screen Digest token budgeting and serialization tests (Perception §10).
+//! Screen Digest token budgeting and serialization tests.
 
 use somicus_uigraph::{
     AppInfo, ClassifiedText, DisplayInfo, FocusInfo, NodeActions, NodeId, NodeRelations,

@@ -1,4 +1,4 @@
-# ADR-0027: The website icon, the one request without a redacted body
+# ADR-0027: The website icon, a request without a redacted body
 
 - **Status:** Proposed (security review pending); implemented in `crates/somicus-net`
 - **Date:** 2026-10-22
@@ -11,10 +11,12 @@ not Privacy Shield output: it has no body to redact, but it reveals the host to 
 ## Decision
 
 1. **One request to the page's own host.** `somicus_net::fetch_site_icon` asks `https://<host>/favicon.ico` of the
-   page Somicus works on, once per host and session. It is the only request that leaves the device without a
-   `Redacted<T>` body: no body, no cookies, no identifying header beyond a fixed user agent; only a host the person
-   already has open; HTTPS only, at most two redirects that stay on HTTPS; at most 64 KiB within 2 seconds, which must
-   start like a known raster image (PNG, ICO, GIF, JPEG or WebP; never SVG). Nothing about the request is logged.
+   page Somicus works on, once per host and session. It is one of the two requests that leave the device without a
+   `Redacted<T>` body (the other is the hash-pinned model download of
+   [ADR-0042](ADR-0042-on-device-name-recognition.md)): no body, no cookies, no identifying header beyond a fixed user
+   agent; only a host the person already has open; HTTPS only, at most two redirects that stay on HTTPS; at most
+   64 KiB within 2 seconds, which must start like a known raster image (PNG, ICO, GIF, JPEG or WebP; never SVG).
+   Nothing about the request is logged.
 2. **Only public hosts** (`is_icon_host`): lower-case DNS labels of letters, digits and hyphens, at least two labels,
    no IP address, no `localhost`, no port or user.
 3. Until the icon arrives, or when the site has none, the app shows the site's initial.

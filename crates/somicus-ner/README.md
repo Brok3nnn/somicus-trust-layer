@@ -12,8 +12,9 @@ model needs the pinned files in a folder (see "Getting the model" below).
 - Loads the model only from verified bytes: each file (`model.safetensors` in 16-bit floats, and `tokenizer.json`) is
   read whole, its length and SHA-256 are checked against the pins compiled into the crate (`pins`), and the very bytes
   that were checked are parsed. No memory map, no pickle, no code in either format.
-- Tokenizes with BERT's cased `WordPiece`, written here from `tokenizer.json` (about 25 crates fewer than the
-  `tokenizers` crate). Special tokens written in screen text are read as ordinary text.
+- Tokenizes with BERT's cased `WordPiece`, written here from `tokenizer.json`, so this crate decides how screen text
+  is split: candle-core compiles the `tokenizers` crate, but this crate never calls it. Special tokens written in
+  screen text are read as ordinary text.
 - Finds `B-PER` and `I-PER` in what the rules left of a text: windows of at most 128 word pieces (a long text in
   windows overlapping by a quarter), packed into rows with a block-diagonal attention mask, a few rows per pass, until
   the turn's deadline. A text whose form hides names (file names, handles, text in one case) is read a second time in
@@ -46,8 +47,8 @@ model needs the pinned files in a folder (see "Getting the model" below).
 
 ## Dependencies
 
-`candle-core` and `candle-nn` 0.9.2 (pinned exactly, default features off; on macOS with Apple's Accelerate
-framework), `safetensors` 0.7.0, `half` 2.7.1, `sha2`, `regex`, `serde`, `serde_json`, `thiserror`,
+`candle-core` and `candle-nn` 0.11.1 (pinned exactly, default features off; on macOS with Apple's Accelerate
+framework), `safetensors` 0.8.0, `half` 2.7.1, `sha2`, `regex`, `serde`, `serde_json`, `thiserror`,
 `somicus-privacy` (the trait) and `somicus-telemetry`. It forbids `unsafe` code.
 
 ## Testing

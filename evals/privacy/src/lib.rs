@@ -198,7 +198,7 @@ fn build_synthetic_2000_node_graph() -> UiGraph {
         let (name, val) = match i % 5 {
             0 => (
                 format!("Customer #{i}"),
-                Some(format!("alice.{i}@company.com")),
+                Some(format!("alice.{i}@company.example")),
             ),
             1 => (
                 format!("Account #{i}"),

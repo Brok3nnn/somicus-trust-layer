@@ -1,10 +1,8 @@
 //! The libcurl transport against a loopback HTTP server, through the real library: on Linux the distribution's, on the
 //! Mac its own. The same checks run for `NSURLSession`.
 
-use std::ffi::OsStr;
-
-use super::{refuse_key_log, run, stream};
-use crate::native::{Failure, conformance};
+use super::{run, stream};
+use crate::native::conformance;
 
 #[test]
 fn answers_with_the_status_and_body_and_sends_the_request_as_given() {
@@ -44,15 +42,6 @@ fn streams_a_file_answer_and_reports_a_broken_or_wrong_one() {
 #[test]
 fn passes_a_sink_failure_on() {
     conformance::passes_a_sink_failure_on(run, stream);
-}
-
-#[test]
-fn sends_nothing_when_the_environment_asks_for_a_tls_key_log() {
-    assert!(matches!(
-        refuse_key_log(Some(OsStr::new("/tmp/keys.log"))),
-        Err(Failure::KeyLog)
-    ));
-    assert!(refuse_key_log(None).is_ok());
 }
 
 #[test]

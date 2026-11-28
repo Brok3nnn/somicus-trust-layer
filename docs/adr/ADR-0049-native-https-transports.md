@@ -33,7 +33,8 @@ puts the request's shape on a command line the system can see, and depends on a 
    that calls WinHTTP, every call behind a safe function with a `// SAFETY:` comment. The Linux module uses the `curl`
    crate's safe API, and the crate forbids `unsafe` there.
 5. **Dependencies.** The `curl` crate is allowed only as a dependency of `somicus-net`, with default features off, so
-   OpenSSL is not compiled; `deny.toml` enforces this and bans HTTP and WebSocket client crates.
+   OpenSSL is not compiled; `deny.toml` enforces this and bans HTTP and WebSocket client crates, and Clippy's
+   `disallowed-methods` (`clippy.toml`) keeps socket, DNS and process calls out of every other crate.
 
 ## Alternatives considered
 
@@ -53,4 +54,5 @@ puts the request's shape on a command line the system can see, and depends on a 
 
 No second program sits between the core and the network, so a replaced `curl` binary, its configuration file and its
 command line drop out of the threat model. A backend that followed a redirect, stored a cookie or read an unbounded
-answer would reopen exfiltration and denial-of-service paths; the shared conformance tests pin each rule.
+answer would reopen exfiltration and denial-of-service paths; the shared conformance tests pin each rule on macOS and
+Linux, and the WinHTTP backend's own tests, not yet run on Windows, pin them there.

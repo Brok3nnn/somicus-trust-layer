@@ -1,8 +1,8 @@
 //! Which values Somicus may type by itself (ADR-0020 and ADR-0038). Somicus types what the person
 //! wrote, the address of a site the person named or asked for, its own search words within tight limits, and a text it
 //! composed, never into a search, address, password or strict field and never with a number that neither the request,
-//! the task's screens nor a checked calculation gave. The runtime's `personValue` in `@somicus/agent-runtime` applies
-//! the same rules first, and may be stricter, never looser.
+//! the task's screens nor a checked calculation gave. The agent runtime (not part of this repository) applies the same
+//! rules first, and may be stricter, never looser.
 
 use crate::action::{ActionTarget, is_search_target};
 use crate::fields::is_strict_target;
@@ -50,7 +50,7 @@ fn well_formed(value: &str, multiline: bool) -> bool {
 /// Whether Somicus may type `value` by itself for `request`: the value appears in the person's own request (up to
 /// spacing, case and one corrected letter), or it is a bare web address (no path or query) whose site name the request
 /// names, for example `youtube.com` for a request that mentions `YouTube`, or that the request asks for without
-/// naming it ([`IMPLIED_SITES`]: `youtube.com` for a video). Anything else the person types themselves, unless
+/// naming it (`IMPLIED_SITES`: `youtube.com` for a video). Anything else the person types themselves, unless
 /// [`typed_draft_allowed`] lets Somicus compose it.
 #[must_use]
 pub fn typed_value_allowed(value: &str, request: &str) -> bool {
@@ -70,8 +70,8 @@ pub fn typed_value_allowed(value: &str, request: &str) -> bool {
 
 /// Whether Somicus may type `value`, a text it composed itself, into `target` for `request` (ADR-0038):
 /// the field is not a search, address, password or strict field (whose values must come from the person,
-/// see [`typed_value_allowed`] and [`crate::fields`]), the text has at most [`MAX_DRAFT_CHARS`] characters, may span
-/// lines, is not a web address, and every number in it is in the request or in `known` (the numbers of the task's
+/// see [`typed_value_allowed`] and [`crate::fields`]), the text has at most `MAX_DRAFT_CHARS` (2,000) characters, may
+/// span lines, is not a web address, and every number in it is in the request or in `known` (the numbers of the task's
 /// screens and of checked calculations). Typing it never sends it: Return after it is classified like Return.
 #[must_use]
 pub fn typed_draft_allowed(
@@ -99,7 +99,7 @@ pub(crate) fn numbers_known(value: &str, request: &str, known: &KnownNumbers) ->
 
 /// Sites a request asks for without naming them, by the beginnings of the words that ask: a video or a clip is on
 /// `YouTube`. Only the site's own bare address may be typed for them, a constant of this table, never a page of it or
-/// another host. The runtime's `IMPLIED_SITES` in `values.ts` is the same table.
+/// another host. The agent runtime uses the same table.
 const IMPLIED_SITES: [(&str, &[&str]); 1] = [("youtube.com", &["video", "clip"])];
 
 /// Whether `value` is the bare address of a site that `request` (in lower case) asks for without naming it.

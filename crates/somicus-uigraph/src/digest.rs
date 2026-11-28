@@ -1,4 +1,4 @@
-//! Screen Digest generation for LLM serialization (Perception §10).
+//! Screen Digest generation for LLM serialization.
 //!
 //! Compact, privacy-safe, token-budgeted text representation of the UI Graph.
 
@@ -58,7 +58,7 @@ pub fn estimate_tokens(text: &str) -> usize {
     chars.div_ceil(4).max(words)
 }
 
-/// Generates a privacy-safe, token-budgeted Screen Digest from a UI Graph (Perception §10).
+/// Generates a privacy-safe, token-budgeted Screen Digest from a UI Graph.
 ///
 /// # Errors
 /// Returns `UiGraphError::InvalidTokenBudget` if the budget is 0.

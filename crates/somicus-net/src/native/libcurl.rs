@@ -5,8 +5,7 @@
 //! Each request is one easy handle: no cookie engine, no `.netrc`, no authentication, no signals (a multithreaded
 //! process), TLS 1.2 or later, and the distribution's CA bundle named explicitly so no environment variable picks the
 //! roots. libcurl follows no redirect: a redirect the caller allows (at most so many, only to HTTPS) is a new request.
-//! The body is passed on piece by piece, and the transfer is aborted the moment it passes its limit. A process whose
-//! environment asks for a TLS key log (`SSLKEYLOGFILE`) sends nothing.
+//! The body is passed on piece by piece, and the transfer is aborted the moment it passes its limit.
 
 use std::cell::Cell;
 use std::path::Path;
@@ -87,14 +86,8 @@ fn header_list(exchange: &Exchange<'_>) -> Result<List, Failure> {
     Ok(list)
 }
 
-/// Refuses to send when the environment names a TLS key log, which libcurl's TLS library would write.
-fn refuse_key_log(key_log: Option<&std::ffi::OsStr>) -> Result<(), Failure> {
-    key_log.map_or(Ok(()), |_| Err(Failure::KeyLog))
-}
-
 /// The easy handle for one request to `url`, with `left` of the budget.
 fn handle(exchange: &Exchange<'_>, url: &str, left: Duration) -> Result<Easy, Failure> {
-    refuse_key_log(std::env::var_os("SSLKEYLOGFILE").as_deref())?;
     let mut easy = Easy::new();
     setup(easy.signal(false))?;
     setup(easy.url(url))?;

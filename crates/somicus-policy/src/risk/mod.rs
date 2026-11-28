@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 
 use lexicon::{is_commit_keyword, is_critical_keyword, is_edit_keyword, is_navigate_keyword};
 
-/// Action risk classes per Somicus Interaction Model §3.
+/// Action risk classes (ADR-0013).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum RiskClass {
@@ -51,7 +51,7 @@ impl RiskClass {
     }
 }
 
-/// Autonomy levels per Somicus Interaction Model §2.
+/// Autonomy levels (ADR-0013).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum AutonomyLevel {
@@ -172,9 +172,8 @@ impl RiskClassifier {
 
     /// Combines local heuristic classification with a model-proposed risk class.
     ///
-    /// Per Interaction Model §3.4:
-    /// "Conservative bias: when uncertain, the next higher class. The model can
-    /// only raise the class, never lower it below local heuristics."
+    /// Conservative bias (ADR-0013): when uncertain, the next higher class. The model can only raise the class,
+    /// never lower it below the local heuristics.
     #[must_use]
     pub fn combine_with_model(&self, local: RiskClass, model: RiskClass) -> RiskClass {
         local.max(model)

@@ -1,4 +1,4 @@
-//! Trusted User Intent verification (E0.4.5 / B2.06): a confirmation counts only as physical input on the bound
+//! Trusted User Intent verification: a confirmation counts only as physical input on the bound
 //! control within 1.0 s, for the action it was registered for, and once. Which system events count as physical is in
 //! `input_sources.rs`.
 
@@ -423,7 +423,7 @@ fn verify_armed(click_ms: u64, armed_ms: u64, submit_ms: u64) -> Result<(), Inte
 
 #[test]
 fn a_click_before_the_control_is_armed_never_confirms() {
-    // The asking panel review's A2: 499 ms after the panel showed is too early, 500 ms is not.
+    // 499 ms after the panel showed is too early, 500 ms is not.
     assert_eq!(
         verify_armed(499, 500, 600),
         Err(IntentError::NoPhysicalInputObserved)

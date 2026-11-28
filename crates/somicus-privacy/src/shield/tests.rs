@@ -151,6 +151,29 @@ fn graph_with(url: Option<&str>, exe_path: Option<&str>) -> UiGraph {
 }
 
 #[test]
+fn selectors_and_shortcuts_of_a_graph_are_redacted_too() {
+    let mut shield = PrivacyShield::new();
+    let mut graph = graph_with(None, None);
+    let email = "jane.doe@example.test";
+    graph.nodes[0].shortcut = Some(format!("Mail {email}"));
+    graph.nodes[0].selectors = SelectorSet {
+        dom_id: Some(format!("sender-{email}")),
+        a11y_path: Some(format!("list/row[{email}]")),
+        relative_anchors: vec![format!("in row '{email}'")],
+        visual_anchor: Some(format!("right of {email}")),
+        ..SelectorSet::default()
+    };
+    let json = shield
+        .redact_uigraph(&graph)
+        .to_json_bytes()
+        .map(Redacted::into_inner)
+        .unwrap_or_default();
+    let json = String::from_utf8_lossy(&json);
+    assert!(json.contains("⟦EMAIL_1⟧"), "{json}");
+    assert!(!json.contains(email), "{json}");
+}
+
+#[test]
 fn window_urls_keep_only_their_origin() {
     let mut shield = PrivacyShield::new();
     for (url, kept) in [

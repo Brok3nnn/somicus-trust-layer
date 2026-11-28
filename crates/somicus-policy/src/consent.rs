@@ -2,7 +2,7 @@
 //! device performs such a click unseen, in every mode, only when every word of the label is in a closed vocabulary of
 //! banner buttons and the label makes the person's choice, and the button sits in a banner that names cookies; a bare
 //! verb ("Accept", "I agree") also needs a banner that names no terms, so a sign-up's terms button never runs unseen.
-//! The agent runtime's `consent.ts` reads labels alike and only marks the click; `consent/labels.json` holds the labels
+//! The agent runtime reads labels alike and only marks the click; `consent/labels.json` holds the labels
 //! both must read the same way.
 
 /// The person's choice for cookie banners.
@@ -36,7 +36,7 @@ enum Word {
 }
 
 /// The closed vocabulary of cookie banner buttons in English, German, Hungarian, French, Spanish, Italian and Dutch,
-/// the same as the runtime's `consent.ts`. A word ending in `*` matches every word that begins with it; any word
+/// the same as the agent runtime's. A word ending in `*` matches every word that begins with it; any word
 /// outside it makes a label no banner button at all, so "Accept all changes" or "Decline meeting" never count.
 /// `consent/labels.json` holds the labels both must read alike.
 const VOCABULARY: &[(Word, &[&str])] = &[

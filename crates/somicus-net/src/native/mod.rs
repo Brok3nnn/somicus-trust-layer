@@ -1,15 +1,17 @@
-//! HTTPS inside the process through the operating system's own HTTP stack (ADR-0049): `WinHTTP` on Windows, `NSURLSession` on macOS and the distribution's libcurl on Linux. No process is started, the server's certificate is checked against the
-//! system's trusted roots, and the system's proxy settings apply. Neither applies [`crate::ProxyConfig`] yet.
+//! HTTPS inside the process through the operating system's own HTTP stack (ADR-0049): `WinHTTP` on Windows,
+//! `NSURLSession` on macOS and the distribution's libcurl on Linux. No process is started, the server's certificate is
+//! checked against the system's trusted roots, and the system's proxy settings apply.
 //!
-//! The contract is the same on both: HTTPS only, TLS 1.2 or later, no credentials in the URL, no cookies, cache or
+//! The contract is the same on all three: HTTPS only, TLS 1.2 or later, no credentials in the URL, no cookies, cache or
 //! stored credentials, never the person's credentials (no automatic sign-in to a server or proxy), redirects only where
-//! the caller allows them and only to HTTPS, an answer read no further than its limit, and a request that ends within
-//! its time budget. Errors carry a fixed message and the stack's error code, never the URL, a header or a body.
+//! the caller allows them and only to HTTPS, an answer read no further than its limit, a request that ends within its
+//! time budget, and nothing sent while the environment names a TLS key log. Errors carry a fixed message and the
+//! stack's error code, never the URL, a header or a body.
 //!
-//! This module holds what needs neither system, so its tests run everywhere: the target parsed from the URL, the
-//! header block, the time budget, the bounded body reader and the error messages. The system calls are in `winhttp`,
-//! which only Windows compiles, `urlsession`, which only macOS compiles, and `libcurl`, which Linux compiles (and the
-//! Mac for its tests).
+//! This module holds what needs no system, so its tests run everywhere: the target parsed from the URL, the header
+//! block, the key-log check, the time budget, the bounded body reader and the error messages. The system calls are in
+//! `winhttp`, which only Windows compiles, `urlsession`, which only macOS compiles, and `libcurl`, which Linux compiles
+//! (and the Mac for its tests).
 
 use std::fmt::Write as _;
 use std::net::Ipv6Addr;
@@ -82,7 +84,7 @@ const SECURE_CERT_REVOKED: u32 = 12_170;
 const SECURE_FAILURE: u32 = 12_175;
 const AUTODETECTION_FAILED: u32 = 12_180;
 
-/// Whether `WinHTTP` may follow a redirect.
+/// Which redirects a request may follow.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(crate) enum Redirects {
     /// Never: a 3xx answer is the answer, as curl without `--location` gives it.
@@ -115,7 +117,7 @@ pub(crate) struct Target {
     pub(crate) path: String,
 }
 
-/// One HTTPS request, checked and ready for `WinHTTP`.
+/// One HTTPS request, checked and ready for the system's stack.
 pub(crate) struct Exchange<'a> {
     /// The HTTP method.
     pub(crate) method: &'static str,
@@ -139,14 +141,15 @@ impl<'a> Exchange<'a> {
     /// A request without a body.
     ///
     /// # Errors
-    /// Returns [`NetError::Connection`] for a URL that is not `https://`, carries credentials or is not valid, and for a
-    /// header that could end its line early.
+    /// Returns [`NetError::Connection`] while the environment names a TLS key log, for a URL that is not `https://`,
+    /// carries credentials or is not valid, and for a header that could end its line early.
     pub(crate) fn new(
         method: &'static str,
         url: &str,
         headers: &[(&str, String)],
         limits: Limits,
     ) -> Result<Self, NetError> {
+        refuse_key_log(std::env::var_os("SSLKEYLOGFILE").as_deref())?;
         Ok(Self {
             method,
             target: target_of(url)?,
@@ -225,13 +228,6 @@ pub(crate) enum Failure {
     )]
     Curl(u32),
     /// The environment asks for a TLS key log (`SSLKEYLOGFILE`), so nothing is sent (ADR-0049 decision 3).
-    #[cfg_attr(
-        any(windows, all(target_os = "macos", not(test))),
-        allow(
-            dead_code,
-            reason = "only the libcurl calls, which Linux compiles, refuse it"
-        )
-    )]
     KeyLog,
     /// `NSURLSession` ended the request with this `NSURLError` code (negative, as Foundation defines them).
     #[cfg_attr(
@@ -337,6 +333,12 @@ fn win32_code(hresult: i32) -> u32 {
     } else {
         bits
     }
+}
+
+/// Refuses to send while the environment names a TLS key log (ADR-0049 decision 3): a TLS library that honours it would
+/// write the session's secrets to that file. Every backend's request starts in [`Exchange::new`], which checks it.
+fn refuse_key_log(key_log: Option<&std::ffi::OsStr>) -> Result<(), Failure> {
+    key_log.map_or(Ok(()), |_| Err(Failure::KeyLog))
 }
 
 /// The status of an answer: a 3-digit HTTP status, and never 407, which comes from a proxy that wants sign-in.

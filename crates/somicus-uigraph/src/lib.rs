@@ -2,9 +2,6 @@
 //!
 //! This crate is the foundational representation of screen perception,
 //! element fingerprinting, screen digest LLM serialization, and target candidate sets.
-//!
-//! See `docs/01-architecture/03-perception-engine.md` and
-//! `docs/05-decisions/ADR-0004-element-id-grounding.md`.
 
 #![forbid(unsafe_code)]
 

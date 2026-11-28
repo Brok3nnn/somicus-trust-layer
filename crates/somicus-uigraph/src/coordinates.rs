@@ -1,6 +1,6 @@
-//! Canonical coordinate systems and multi-monitor / mixed-DPI transformations (Perception §3).
+//! Canonical coordinate systems and multi-monitor / mixed-DPI transformations.
 //!
-//! Per Perception §3, the canonical coordinate space uses global physical pixels
+//! The canonical coordinate space uses global physical pixels
 //! of the virtual desktop. Overlay windows convert to display-local logical coordinates
 //! at render time using their display's scale factor.
 

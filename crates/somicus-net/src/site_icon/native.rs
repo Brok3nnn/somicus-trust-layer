@@ -1,5 +1,6 @@
-//! The icon request through the system's own stack, `WinHTTP` on Windows and `NSURLSession` on
-//! macOS (ADR-0049): no process is started, and the rules are those of `crate::native`, with redirects allowed as curl's `--location --max-redirs 2 --proto-redir =https` allows them.
+//! The icon request through the system's own stack, `WinHTTP` on Windows, `NSURLSession` on macOS and libcurl on Linux
+//! (ADR-0049): no process is started, and the rules are those of `crate::native`, with at most two redirects, each to
+//! HTTPS.
 
 use std::time::Duration;
 

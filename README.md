@@ -20,7 +20,10 @@ An agent that can read your screen and click for you has to be trusted with two 
 device, and what it does on it. This repository is the code that enforces both, published so that anyone can audit it:
 
 - **Privacy**: personal data in screen text is found and pseudonymized on the device before anything leaves it.
-- **Egress**: there is exactly one network path, and it only accepts redacted data. The compiler enforces this.
+- **Egress**: one request function, whose body must be a `Redacted<T>`: an un-redacted body does not compile, and the
+  only ways around the brand are three named, greppable functions. The URL and the credential headers are plain
+  strings the caller chooses. No crate but `somicus-net` opens a connection: Clippy's `disallowed-methods` rejects
+  socket, DNS and process calls everywhere else, and `deny.toml` bans other HTTP clients; CI runs both.
 - **Safety**: every step the agent proposes passes local, deterministic rules that a model or a compromised server
   cannot override.
 
@@ -103,9 +106,12 @@ WinHTTP on Windows, `NSURLSession` on macOS, the distribution's libcurl on Linux
 ([ADR-0049](docs/adr/ADR-0049-native-https-transports.md)): plain HTTP only to loopback, TLS 1.2+, no cookies or stored
 credentials, no redirects, answers cancelled past 8 MiB while they stream, a 25-second budget, and nothing sent when
 `SSLKEYLOGFILE` is set. A [shared conformance suite](crates/somicus-net/src/native/conformance.rs) pins the rules for
-every backend. Two bodiless requests are documented exceptions: the [website icon](crates/somicus-net/src/site_icon.rs)
-and the [hash-pinned download](crates/somicus-net/src/pinned_file.rs) of the name model. `deny.toml` bans every other
-HTTP or WebSocket client crate.
+the macOS and Linux backends; the WinHTTP backend has its own tests, which have not run on Windows yet. Two bodiless
+requests are documented exceptions: the [website icon](crates/somicus-net/src/site_icon.rs) and the [hash-pinned
+download](crates/somicus-net/src/pinned_file.rs) of the name model. No other crate may open a connection: Clippy's
+`disallowed-methods` ([`clippy.toml`](clippy.toml)) rejects the standard library's and Tokio's socket, DNS and process
+calls outside `somicus-net`, and [`deny.toml`](deny.toml) bans every other HTTP or WebSocket client crate and keeps
+`curl` and the system stacks' bindings in `somicus-net`.
 
 ### `somicus-policy`: the local Policy Guard
 
@@ -124,8 +130,9 @@ pub enum PolicyDecision {
 
 - **Risk classes** R0 (observe) to R5 (prohibited) from a whole-word [label lexicon](crates/somicus-policy/src/risk/lexicon.rs)
   in five languages and floors per action kind; a model's estimate can raise a class, never lower it.
-- **Hard invariants**: R5 is always denied, nothing runs at autonomy L0, a [built-in deny list](crates/somicus-policy/src/bundle.rs)
-  (password managers, banking and brokerage apps, security settings) holds under every policy.
+- **Hard invariants**: R5 is always denied, nothing runs at autonomy L0, and a small [built-in deny
+  list](crates/somicus-policy/src/bundle.rs) (18 names of password managers, banking and brokerage apps and security
+  settings, matched as whole words) holds under every policy.
 - **Trusted intent**: the [`IntentVerifier`](crates/somicus-policy/src/verifier.rs) accepts a confirmation only as
   physical input inside the confirm control within 1 s, bound to the action's hash, once; synthetic events are
   rejected.
@@ -183,7 +190,7 @@ See also [privacy](docs/security/privacy.md) and [AI safety](docs/security/ai-sa
 |---|---|
 | [ADR-0013](docs/adr/ADR-0013-autonomy-levels-and-risk-classes.md) | Autonomy levels L0–L3 and risk classes R0–R5 |
 | [ADR-0014](docs/adr/ADR-0014-on-device-redaction.md) | On-device redaction before any egress |
-| [ADR-0027](docs/adr/ADR-0027-website-icons.md) | The website icon, the one request without a redacted body |
+| [ADR-0027](docs/adr/ADR-0027-website-icons.md) | The website icon, a request without a redacted body |
 | [ADR-0040](docs/adr/ADR-0040-confirmations-the-person-can-switch-off.md) | Confirmations on by default; only the person can switch them off |
 | [ADR-0041](docs/adr/ADR-0041-policy-as-rust-rules-with-signed-bundles.md) | Policy as Rust rules with signed bundles, not a policy engine |
 | [ADR-0042](docs/adr/ADR-0042-on-device-name-recognition.md) | On-device name recognition with a hash-pinned DistilBERT |
@@ -234,6 +241,7 @@ of the person names; with the name model, 95.2 % of the names. Details: [evals/p
 │   ├── architecture.md
 │   ├── security/            threat model, privacy, AI safety
 │   └── adr/                 architecture decision records
+├── clippy.toml              lint settings: no socket, DNS or process calls outside somicus-net
 ├── deny.toml                dependency policy (cargo-deny)
 └── .config/nextest.toml     optional cargo-nextest settings
 ```
@@ -247,9 +255,8 @@ of the person names; with the name model, 95.2 % of the names. Details: [evals/p
   limited to what the code and tests in this repository show.
 - **Recall is not 100 %.** Without the name model, most person names pass through unredacted.
 - **The name model files are not included**; the model-backed tests and eval are opt-in.
-- **Platform coverage.** The tests have been run on macOS, where they exercise `NSURLSession` and libcurl; the CI
-  workflow runs them on Linux. The WinHTTP backend type-checks for Windows targets
-  (`cargo check --target x86_64-pc-windows-msvc`), but its Windows-only tests have not been run.
+- **Platform coverage.** CI runs the tests on Linux and macOS, where they exercise libcurl and `NSURLSession`, and
+  Clippy on Windows, where the WinHTTP backend and its Windows-only tests compile; those tests have not been run.
 - The escape hatches `Redacted::without_content`, `Redacted::account_data` and `Redacted::map` exist by design; the
   product's call sites of them are not in this repository.
 

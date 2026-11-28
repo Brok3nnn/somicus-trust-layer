@@ -15,7 +15,7 @@ const MAX_DEPTH: usize = 8;
 const MAX_CONSTANT: u32 = 100;
 /// Largest whole number a spreadsheet formula may use without having been seen: months, periods and percentages such
 /// as `=PMT(6%/12,48,-12000)`. The app calculates a formula again from its
-/// cells, so such a constant is no invented figure. The agent runtime's `allowsNumbers` takes the same.
+/// cells, so such a constant is no invented figure. The agent runtime allows the same.
 const MAX_FORMULA_CONSTANT: u32 = 1_000;
 
 /// The numbers a task may use.
@@ -121,7 +121,7 @@ impl KnownNumbers {
     }
 
     /// Whether every number written in `text` is known; in a spreadsheet formula (text that starts with `=`), a whole
-    /// number up to [`MAX_FORMULA_CONSTANT`] counts as known.
+    /// number up to `MAX_FORMULA_CONSTANT` (1,000) counts as known.
     #[must_use]
     pub fn allow(&self, text: &str) -> bool {
         let formula = text.trim_start().starts_with('=');
@@ -149,7 +149,7 @@ impl KnownNumbers {
 }
 
 /// The value of `calculation` (numbers, `+ - * / %` and parentheses), when every number in it is known or a whole
-/// number up to [`MAX_CONSTANT`] and the result is finite; `None` for anything else, such as a name, a call or a
+/// number up to `MAX_CONSTANT` (100) and the result is finite; `None` for anything else, such as a name, a call or a
 /// division by zero.
 #[must_use]
 pub fn evaluate(calculation: &str, known: &KnownNumbers) -> Option<f64> {

@@ -1,6 +1,6 @@
 //! The Privacy Shield's token vault, text redaction and whole-graph redaction.
 //!
-//! The recall and latency evaluation (B3.05) runs in `evals/privacy`.
+//! The recall and latency evaluation runs in `evals/privacy`.
 
 use somicus_privacy::recognizers::EntityType;
 use somicus_privacy::shield::PrivacyShield;
@@ -18,7 +18,7 @@ use somicus_uigraph::role::Role;
 fn the_vault_keeps_one_token_per_value_for_the_session_and_rehydrates_it() {
     let mut vault = TokenVault::new();
 
-    let email = "alexander.mueller@example.de";
+    let email = "alexander.mueller@example.com";
     let token1 = vault.tokenize(email, EntityType::Email);
     let token2 = vault.tokenize(email, EntityType::Email);
 
@@ -89,7 +89,7 @@ fn create_test_uigraph() -> UiGraph {
         windows: vec![WindowInfo {
             window_ref: "win_1".to_string(),
             app_ref: "app_1".to_string(),
-            title: ClassifiedText::public_label("Account: alice@company.com"),
+            title: ClassifiedText::public_label("Account: alice@company.example"),
             bounds_px: PhysicalRect::new(0, 0, 1920, 1080),
             display_id: 1,
             z_order: 0,
@@ -133,7 +133,7 @@ fn the_shield_redacts_every_text_of_a_ui_graph() {
         !inner_graph.windows[0]
             .title
             .raw_text()
-            .contains("alice@company.com")
+            .contains("alice@company.example")
     );
     assert!(
         inner_graph.windows[0]

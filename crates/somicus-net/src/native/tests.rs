@@ -1,4 +1,4 @@
-//! The platform-neutral half of the `WinHTTP` transport, tested on every system.
+//! The platform-neutral half of the native transports, tested on every system.
 
 use std::time::Duration;
 
@@ -344,4 +344,13 @@ fn wide_strings_end_with_one_nul() {
         [u16::from(b'G'), u16::from(b'E'), u16::from(b'T'), 0]
     );
     assert_eq!(wide(""), [0]);
+}
+
+#[test]
+fn sends_nothing_when_the_environment_asks_for_a_tls_key_log() {
+    assert!(matches!(
+        refuse_key_log(Some(std::ffi::OsStr::new("/tmp/keys.log"))),
+        Err(Failure::KeyLog)
+    ));
+    assert!(refuse_key_log(None).is_ok());
 }

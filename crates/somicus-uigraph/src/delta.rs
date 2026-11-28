@@ -1,4 +1,4 @@
-//! Minimal delta patching and change detection for UI Graphs (Perception §8).
+//! Minimal delta patching and change detection for UI Graphs.
 //!
 //! Emits minimal patches containing only added nodes, removed node IDs,
 //! and modified fields for existing nodes.
@@ -50,7 +50,7 @@ impl NodeChange {
     }
 }
 
-/// A compact structural and property diff between two UI Graph snapshots (Perception §8).
+/// A compact structural and property diff between two UI Graph snapshots.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct UiGraphDelta {
     /// Identifier of the base snapshot this delta applies to.

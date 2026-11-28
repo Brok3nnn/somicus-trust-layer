@@ -1,6 +1,6 @@
 //! Canonical screen geometry and coordinate primitives.
 //!
-//! Per Perception §3, all coordinates in the UI Graph use global physical pixels of the virtual desktop.
+//! All coordinates in the UI Graph use global physical pixels of the virtual desktop.
 
 use serde::{Deserialize, Serialize};
 
@@ -21,7 +21,7 @@ impl PhysicalPoint {
     }
 }
 
-/// An axis-aligned rectangle in global physical screen pixels (Perception §3).
+/// An axis-aligned rectangle in global physical screen pixels.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, Default)]
 pub struct PhysicalRect {
     /// X origin in physical pixels.

@@ -1,6 +1,6 @@
 //! Requests to the Somicus services (ADR-0032): sign-in, sessions and the model service, with the status code and the
-//! RFC 9449 headers. Plain HTTP goes only to a loopback address, the backend on this machine; HTTPS goes through
-//! the system's own stack inside the process (`WinHTTP`, `NSURLSession`, libcurl; the `native` submodule). Every body is
+//! RFC 9449 headers. Plain HTTP goes only to a loopback address, the backend on this machine; HTTPS goes through the
+//! system's own stack inside the process (`WinHTTP`, `NSURLSession`, libcurl; the `native` submodule). Every body is
 //! [`Redacted`], the access token and proof travel only in headers, never on a command line, no answer is read past
 //! [`MAX_RESPONSE_BYTES`], and `Debug` shows neither credentials nor bodies.
 
@@ -14,7 +14,10 @@ use tokio::net::TcpStream;
 use crate::Redacted;
 use crate::debug::{ByteCount, Hidden};
 use crate::error::NetError;
-use crate::urlsession::extract_response_body;
+
+// The HTTP/1.1 answer of the loopback path.
+mod http1;
+use http1::extract_response_body;
 
 // The HTTPS transport: the system's own stack inside the process (ADR-0049).
 mod native;
@@ -80,9 +83,10 @@ fn transport_of(url: &str) -> &'static str {
 
 /// A request to a Somicus service. `Debug` shows the URL without its query and hides the credentials.
 ///
-/// The body must be a [`Redacted`] value: a raw body does not compile.
+/// The body must be a [`Redacted`] value: a raw body does not compile. The URL and the two header values are plain
+/// strings the caller chooses: service endpoints and credentials, not branded.
 ///
-/// ```compile_fail
+/// ```compile_fail,E0308
 /// use somicus_net::{Method, ServiceRequest};
 ///
 /// let request = ServiceRequest {
@@ -241,6 +245,10 @@ async fn send_http(request: ServiceRequest<'_>) -> Result<ServiceResponse, NetEr
         "Content-Length: {}\r\nConnection: close\r\n\r\n",
         body.len()
     );
+    #[expect(
+        clippy::disallowed_methods,
+        reason = "the plain-HTTP path, to a loopback address only (checked above)"
+    )]
     let mut stream = TcpStream::connect(address)
         .await
         .map_err(|error| NetError::Connection(format!("could not reach {address}: {error}")))?;

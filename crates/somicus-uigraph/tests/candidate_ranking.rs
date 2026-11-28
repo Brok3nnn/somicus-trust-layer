@@ -1,4 +1,4 @@
-//! Candidate set ranking determinism and snapshot tests (Perception §10).
+//! Candidate set ranking determinism and snapshot tests.
 
 use somicus_uigraph::{
     AppInfo, CandidateRankingOptions, ClassifiedText, DisplayInfo, FocusInfo, NodeActions, NodeId,

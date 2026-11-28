@@ -1,4 +1,4 @@
-//! Stable element fingerprinting for UI nodes (Perception §6).
+//! Stable element fingerprinting for UI nodes.
 //!
 //! An `ElementFingerprint` is a 64-bit hash (`xxh3_64`) over a canonical tuple:
 //! `(app_id, role, normalized_name, stable_attrs, ancestor_signature, sibling_bucket)`.

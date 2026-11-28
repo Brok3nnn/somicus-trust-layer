@@ -1,4 +1,4 @@
-//! Risk floors and value rules for the steps Somicus performs itself in Do mode (interaction model §3.1 and §4).
+//! Risk floors and value rules for the steps Somicus performs itself in Do mode.
 //!
 //! The floor depends only on the kind of action and the target's role in the local UI Graph, never on model output,
 //! so a wrong or hostile model answer cannot lower it. The class of a performed action is the maximum of this floor,

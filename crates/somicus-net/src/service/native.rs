@@ -1,5 +1,5 @@
-//! HTTPS to the services through the system's own stack, `WinHTTP` on Windows and `NSURLSession`
-//! on macOS (ADR-0049): no process is started, and the rules are those of `crate::native`.
+//! HTTPS to the services through the system's own stack, `WinHTTP` on Windows, `NSURLSession` on macOS and libcurl on
+//! Linux (ADR-0049): no process is started, and the rules are those of `crate::native`.
 
 use std::time::Duration;
 
@@ -10,8 +10,7 @@ use crate::Redacted;
 use crate::error::NetError;
 use crate::native::{Answer, Exchange, Limits, Redirects, exchange};
 
-/// Sends `request` through the native stack, following no redirect, as curl does without `--location`. Blocking: run it off
-/// the async runtime.
+/// Sends `request` through the native stack, following no redirect. Blocking: run it off the async runtime.
 pub(super) fn send(request: ServiceRequest<'_>) -> Result<ServiceResponse, NetError> {
     let headers = headers_of(&request)?;
     let body = request.body.map(Redacted::into_inner).unwrap_or_default();

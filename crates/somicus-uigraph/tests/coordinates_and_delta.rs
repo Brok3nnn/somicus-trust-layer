@@ -1,4 +1,4 @@
-//! Property-based and unit tests for coordinate mapping and delta engine (Perception §3, §8).
+//! Property-based and unit tests for coordinate mapping and delta engine.
 
 use proptest::prelude::*;
 use somicus_uigraph::{

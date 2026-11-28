@@ -1,4 +1,4 @@
-//! Property-based tests for element fingerprinting (Perception §6).
+//! Property-based tests for element fingerprinting.
 
 use proptest::prelude::*;
 use somicus_uigraph::{

@@ -63,7 +63,7 @@ pub fn is_strict_target(target: &ActionTarget<'_>) -> bool {
 }
 
 /// Whether Somicus may type `value`, search words of its own, into the search or address field `target` for
-/// `request`: at most [`MAX_SEARCH_CHARS`] characters and [`MAX_SEARCH_WORDS`] words on one line, no web or e-mail
+/// `request`: at most `MAX_SEARCH_CHARS` (80) characters and `MAX_SEARCH_WORDS` (8) words on one line, no web or e-mail
 /// address, no placeholder, and no number that neither the request nor `known` has.
 #[must_use]
 pub fn search_words_allowed(
@@ -133,7 +133,7 @@ mod tests {
         ));
         assert!(!search_words_allowed("kutya 1990", request, &search, &none));
         assert!(!search_words_allowed(
-            "anna@pelda.hu",
+            "anna@pelda.example",
             request,
             &search,
             &none

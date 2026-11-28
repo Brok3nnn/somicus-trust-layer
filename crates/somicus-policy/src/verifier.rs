@@ -321,7 +321,7 @@ impl IntentVerifier {
         }
 
         // One physical input confirms one action: it is taken out, so the same click cannot confirm a second action
-        // submitted within the window (the asking panel review's B1).
+        // submitted within the window.
         if let Some(input) = confirming.and_then(|index| self.recent_inputs.remove(index)) {
             return Ok(self.confirm(action_hash, input));
         }

@@ -9,9 +9,22 @@
 //!    on the list or whose value does not fit its kind, including a label that is not a short lower-case identifier.
 //!    A raw `tracing` call therefore cannot add content either.
 //!
+//! A field that is not on the allow-list does not compile:
+//!
+//! ```compile_fail
+//! somicus_telemetry::event!(INFO, "probe", email = "jane.doe@example.com");
+//! ```
+//!
+//! Nor does a value that is neither a label nor a count, such as text read from the screen:
+//!
+//! ```compile_fail,E0277
+//! let text = String::from("Jane Doe");
+//! somicus_telemetry::event!(INFO, "probe", reason = text);
+//! ```
+//!
 //! What can be recorded: ids and counts, durations (measured by the layer), enum names, error kinds and command names.
 //! What cannot: screen text, field values, prompts, model output, URLs, file paths, tokens, keys, e-mail addresses or
-//! any message text. [`init`] writes to standard error in debug builds and installs nothing in release builds.
+//! any message text. [`init()`] writes to standard error in debug builds and installs nothing in release builds.
 
 #![forbid(unsafe_code)]
 

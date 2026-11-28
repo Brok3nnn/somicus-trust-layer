@@ -1,4 +1,4 @@
-//! Which input events count as physical for Trusted User Intent (E0.4.5 / B2.06): injected clicks and keys on the
+//! Which input events count as physical for Trusted User Intent: injected clicks and keys on the
 //! confirm control are rejected on Windows and macOS, and genuine hardware input is accepted.
 
 use std::time::{Duration, Instant};

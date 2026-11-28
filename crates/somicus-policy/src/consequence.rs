@@ -1,9 +1,9 @@
-//! Steps the person must ask for in words, checked on the device (ADR-0028 §11, ADR-0040 requirement 7).
+//! Steps the person must ask for in words, checked on the device (ADR-0028 and ADR-0040).
 //!
 //! Sending, deleting, paying, posting and approving cannot be taken back. While the person has confirmations switched
 //! off, the device performs such a step without the Confirmation sheet only when the words of the current task ask for
-//! that kind of thing; otherwise the step waits for a confirmation after all. This mirrors the agent runtime's
-//! `consequencesOf` and `asksFor` (the agent runtime, not part of this repository), so a compromised or mistaken
+//! that kind of thing; otherwise the step waits for a confirmation after all. This mirrors the agent runtime's own
+//! check (the agent runtime is not part of this repository), so a compromised or mistaken
 //! model service cannot propose an unasked send that the device then performs without asking.
 //!
 //! The words are compared in lower case without accents, as whole words; a word's apostrophe is dropped, so "don't"

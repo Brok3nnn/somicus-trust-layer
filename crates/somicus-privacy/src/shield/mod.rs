@@ -1,4 +1,4 @@
-//! Privacy Shield on-device redaction and pseudonymization engine (Privacy Shield §4).
+//! Privacy Shield on-device redaction and pseudonymization engine (ADR-0014).
 //!
 //! Encapsulates classification, entity recognition, token vault management,
 //! and wrapping into [`Redacted<T>`] before network transmission.
@@ -170,7 +170,9 @@ impl PrivacyShield {
         Redacted::new(text)
     }
 
-    /// Redacts an entire UI Graph in place, returning a branded [`Redacted<UiGraph>`].
+    /// Redacts an entire UI Graph in place, returning a branded [`Redacted<UiGraph>`]: window titles, and each node's
+    /// name, description, value, selectors and shortcut. A window's URL keeps only its origin and an executable's path
+    /// only its file name.
     pub fn redact_uigraph(&mut self, graph: &UiGraph) -> Redacted<UiGraph> {
         let span =
             somicus_telemetry::span!(INFO, "privacy_redact_graph", nodes = graph.nodes.len());
@@ -218,6 +220,26 @@ impl PrivacyShield {
                 let new_val = self.redact_text(val).into_inner();
                 node.value = Some(ClassifiedText::personal(new_val));
                 node.classification = PrivacyClass::Personal;
+            }
+
+            // The selectors and the shortcut travel with the graph, and their text is screen text too.
+            let selectors = &mut node.selectors;
+            for text in [
+                &mut selectors.automation_id,
+                &mut selectors.class_name,
+                &mut selectors.dom_id,
+                &mut selectors.data_testid,
+                &mut selectors.dom_name,
+                &mut selectors.aria_role,
+                &mut selectors.a11y_path,
+                &mut selectors.visual_anchor,
+                &mut node.shortcut,
+            ]
+            .into_iter()
+            .flatten()
+            .chain(&mut selectors.relative_anchors)
+            {
+                *text = self.pseudonymize_string(text);
             }
 
             if name_changed {

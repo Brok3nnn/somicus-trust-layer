@@ -2,8 +2,8 @@
 
 ## Principles
 
-1. **Minimise at the source.** Field values are not sent; what leaves the device is structure (roles, states,
-   positions) and text that passed the Privacy Shield.
+1. **Minimise at the source.** What leaves the device is structure (roles, states, positions) and text that passed
+   the Privacy Shield; a field's value is redacted like any other text.
 2. **Purpose limitation.** Screen data is used to answer the current request, not for training.
 3. **Privacy by default.** When a recognizer cannot run, the whole text becomes one token; when the name model is
    missing, the shield says so and works with its rules.

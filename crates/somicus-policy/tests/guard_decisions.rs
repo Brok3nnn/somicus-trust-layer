@@ -1,4 +1,4 @@
-//! The Policy Guard's decisions (Policy Guard v1, E1.8 / B6.05): the default policy on personal workspaces, the
+//! The Policy Guard's decisions: the default policy on personal workspaces, the
 //! rejection of a tampered signed bundle, the physical confirmation an R3 action is bound to, the personal Do bundle,
 //! the person's confirmation switch against a bundle that requires confirmations (ADR-0040) and the autonomy levels.
 

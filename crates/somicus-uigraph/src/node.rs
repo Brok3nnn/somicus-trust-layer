@@ -1,4 +1,4 @@
-//! Core UI Node representations (Perception §2).
+//! Core UI Node representations.
 
 use crate::fingerprint::ElementFingerprint;
 use crate::geometry::PhysicalRect;
@@ -135,7 +135,7 @@ pub enum NodeSource {
 }
 
 impl NodeSource {
-    /// Returns the initial baseline confidence for elements from this source (Perception §5).
+    /// Returns the initial baseline confidence for elements from this source.
     #[must_use]
     pub const fn prior_confidence(self) -> f32 {
         match self {
@@ -161,7 +161,7 @@ pub struct NodeRelations {
     pub flows_to: Option<NodeId>,
 }
 
-/// Selector strategies for element re-resolution (Perception §6).
+/// Selector strategies for element re-resolution.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, Default)]
 pub struct SelectorSet {
     /// Native platform automation ID (UIA `AutomationId`, `AXIdentifier`).
@@ -184,7 +184,7 @@ pub struct SelectorSet {
     pub visual_anchor: Option<String>,
 }
 
-/// A normalized, fused node in the UI Graph (Perception §2).
+/// A normalized, fused node in the UI Graph.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct UiNode {
     /// Short session-scoped identifier.
